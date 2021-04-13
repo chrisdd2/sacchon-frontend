@@ -1,3 +1,4 @@
+<pre>
 app (admin):
     common:
         guards
@@ -28,3 +29,4 @@ app (admin):
                 patient-data
             service:
                 reporter-data
+</pre>
