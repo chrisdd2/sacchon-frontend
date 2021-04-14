@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="row mt-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"> {{ auth.user.firstName }} {{ auth.user.lastName }} </h5>
+                <h6 class="card-subtitle">Patient</h6>
+                <h6>Consulting doctor: None</h6>
+                <a href="mailto:{{ auth.user.email }}" class="card-link">{{ auth.user.email }}</a>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-1">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">Quick links</h6>
+                <div>
+                    <a href="#">Submit medical data</a>
+                </div>
+                <div>
+                    <a href="#">View current consultation</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row border mt-1" id="hello">
+        <div class="alert alert-link">
+            <div>
+                <span class="px-2"> Glucose level (average): 120 <i>mg/Ld</i> </span>
+            </div>
+            <div class="px-2">
+                <span class="fs-6 text-muted pe-1"> in the last 30 days</span>
+                <!-- <i (click)="change()" class="fake-link bi bi-gear-fill"></i> -->
+            </div>
+        </div>
+        <div class="alert alert-link">
+            <div>
+                <span class="px-2"> Carb intake (average): 120 <i>g</i> </span>
+            </div>
+            <div class="px-2">
+                <span class="fs-6 text-muted pe-1"> in the last 30 days</span>
+                <!-- <i (click)="change()" class="fake-link bi bi-gear-fill"></i> -->
+            </div>
+        </div>
+    </div>
+</div>

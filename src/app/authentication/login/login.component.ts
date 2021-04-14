@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         u => {
           console.log('succesfull login', u);
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl(this.auth.getHomeRoute());
         },
         er => {
           this.error = {message: er.error};

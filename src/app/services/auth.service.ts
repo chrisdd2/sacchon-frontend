@@ -53,6 +53,15 @@ export class AuthService{
     return true;
   }
 
+  public getHomeRoute():string{
+    switch(this.user.role){
+      case "patient": return "/patient";
+      case "doctor": return "/doctor";
+      case "reporter": return "/reporter";
+      default: "/";
+    }
+  }
+
   private isSessionExpired(user:User):boolean {
     return Date.now() > user.expires_at;
   }
