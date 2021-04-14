@@ -11,12 +11,15 @@ import { AuthenticationModule } from './authentication/authentication.module';
 import { HeaderComponent } from './common/header/header.component';
 import { ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { HomeComponent } from './common/home/home.component';
+import { DataService } from './services/data.service';
+import { AvgItemComponent } from './common/avg-item/avg-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    AvgItemComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +31,7 @@ import { HomeComponent } from './common/home/home.component';
   providers: [
     FormBuilder,
     AuthService,
+    DataService,
     {provide: HTTP_INTERCEPTORS, useClass:AuthInterceptor, multi:true},
     {provide: HTTP_INTERCEPTORS, useClass:FakeBackendInterceptor,multi:true}
   ],
