@@ -4,12 +4,10 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HttpEventType,
   HttpResponse
 } from '@angular/common/http';
 import { Observable, of, pipe, throwError } from 'rxjs';
 import { User } from '../models/user.model';
-import { EmailValidator } from '@angular/forms';
 import { mergeMap } from 'rxjs/operators';
 
 

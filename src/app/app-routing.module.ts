@@ -18,6 +18,12 @@ const routes: Routes = [
     loadChildren: () => import('./patient/patient.module').then(m => m.PatientModule),
     canActivate: [RoleGuard],
     data: { role: 'patient' }
+  },
+  {
+    path: 'doctor',
+    loadChildren: () => import('./doctor/doctor.module').then(m => m.DoctorModule),
+    canActivate: [RoleGuard],
+    data: { role: 'doctor' }
   }
 ];
 

@@ -16,5 +16,5 @@ export class HomeComponent implements OnInit {
     if ( this.auth.isLoggedIn())
       this.router.navigateByUrl(this.auth.getHomeRoute());
   }
-
+  
 }
