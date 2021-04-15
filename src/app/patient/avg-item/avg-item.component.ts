@@ -43,7 +43,7 @@ export class AvgItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      date_start: [[dateLimitValidator(Date.now())]],
+      date_start: [,[dateLimitValidator(Date.now())]],
       date_end: [, [dateLimitValidator(Date.now())]]
     }, { validator: dateRangeValidator('date_start', 'date_end') } );
     this.changing = false;
@@ -57,7 +57,6 @@ export class AvgItemComponent implements OnInit {
 
 
   onSubmit(start: Date, end: Date) {
-    this.form.errors
     if( this.form.invalid) 
       return;
     if (!start && !end)
