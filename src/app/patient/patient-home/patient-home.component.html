@@ -22,27 +22,22 @@
             </div>
         </div>
     </div>
-    <div class="row border mt-1" id="hello">
-        <div *ngIf='patient;else spin'class="alert alert-link">
-            <div>
-                <span class="px-2"> Glucose level (average): 120 <i>mg/Ld</i> </span>
-            </div>
-            <div class="px-2">
-                <span class="fs-6 text-muted pe-1"> in the last 30 days</span>
-                <!-- <i (click)="change()" class="fake-link bi bi-gear-fill"></i> -->
+    <div class="row mt-1">
+        <div class="card">
+            <div class="card-body">
+                <sacchon-avg-item desc='Glucose level (Avg):' unit="mg/ld" #glucose (onChange)="getAvg('glucose',$event,glucose)"></sacchon-avg-item>
             </div>
         </div>
-        <div class="alert alert-link">
-            <div>
-                <span class="px-2"> Carb intake (average): 120 <i>g</i> </span>
-            </div>
-            <div class="px-2">
-                <span class="fs-6 text-muted pe-1"> in the last 30 days</span>
-                <!-- <i (click)="change()" class="fake-link bi bi-gear-fill"></i> -->
+    </div>
+    <div class="row mt-1">
+        <div class="card">
+            <div class="card-body">
+                <sacchon-avg-item desc='Carb intake (Avg):' unit="g" #carb (onChange)="getAvg('carb',$event,carb)"></sacchon-avg-item>
             </div>
         </div>
     </div>
 </div>
+
 <ng-template #spin>
     <div #spin class='spinner-border text-primary d-block mx-auto my-3' role='status'></div>
 </ng-template>

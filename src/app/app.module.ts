@@ -1,3 +1,4 @@
+import { PatientModule } from './patient/patient.module';
 import { FakeBackendInterceptor } from './common/fake-backend.interceptor';
 import { AuthInterceptor } from './common/auth.interceptor';
 import { AuthService } from './services/auth.service';
@@ -12,21 +13,19 @@ import { HeaderComponent } from './common/header/header.component';
 import { ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { HomeComponent } from './common/home/home.component';
 import { DataService } from './services/data.service';
-import { AvgItemComponent } from './common/avg-item/avg-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    AvgItemComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AuthenticationModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [
     FormBuilder,

@@ -1,4 +1,4 @@
-import { dataRoutes } from './../services/data.service';
+import { AvgItem, dataRoutes } from './../services/data.service';
 import { Injectable } from '@angular/core';
 import {
   HttpRequest,
@@ -50,6 +50,11 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         });
       }
       return throwError({error: 'cannot find user-info' });
+    }
+    else if( request.url.indexOf(dataRoutes['patient-avg']) >=0 && request.method=="GET"){
+      return this.wrap( <AvgItem>{
+        avg:120,
+      });
     }
     else
       return next.handle(request);
