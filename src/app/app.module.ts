@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { DoctorModule } from './doctor/doctor.module';
+=======
+import { PatientModule } from './patient/patient.module';
+>>>>>>> datepicker
 import { FakeBackendInterceptor } from './common/fake-backend.interceptor';
 import { AuthInterceptor } from './common/auth.interceptor';
 import { AuthService } from './services/auth.service';
@@ -19,7 +23,7 @@ import { PatientsService } from './services/patients.service';
   declarations: [
     AppComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,7 +31,6 @@ import { PatientsService } from './services/patients.service';
     AuthenticationModule,
     HttpClientModule,
     ReactiveFormsModule,
-    DoctorModule
   ],
   providers: [
     FormBuilder,

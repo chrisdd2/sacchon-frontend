@@ -1,0 +1,8 @@
+<div *ngIf='!loading;else spin' class="row">
+    <h5>{{desc}}&nbsp;{{value}}&nbsp;<i>{{unit}}</i></h5>
+    <h6 class="text-muted">{{ period}} <i (click)='changing=!changing' class="fake-link bi bi-gear-fill"></i></h6>
+    <sacchon-date-range *ngIf='changing' (onChange) = 'onDateChange($event)' (onCancel)='changing=false'></sacchon-date-range>
+</div>
+<ng-template #spin>
+    <div #spin class='spinner-border text-primary d-block mx-auto my-3' role='status'></div>
+</ng-template>

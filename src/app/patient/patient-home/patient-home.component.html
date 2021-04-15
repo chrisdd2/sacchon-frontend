@@ -1,11 +1,11 @@
 <div class="container">
     <div class="row mt-3">
         <div class="card">
-            <div class="card-body">
-                <h5 class="card-title"> {{ auth.user.firstName }} {{ auth.user.lastName }} </h5>
+            <div *ngIf='patient; else spin' class="card-body">
+                <h5 class="card-title"> {{ patient.name }} </h5>
                 <h6 class="card-subtitle">Patient</h6>
-                <h6>Consulting doctor: None</h6>
-                <a href="mailto:{{ auth.user.email }}" class="card-link">{{ auth.user.email }}</a>
+                <h6>Consulting doctor: {{ patient.doctor!='' ? patient.doctor: "None" }} </h6>
+                <a href="mailto:{{ patient.name }}" class="card-link">{{ patient.email}}</a>
             </div>
         </div>
     </div>
@@ -22,24 +22,23 @@
             </div>
         </div>
     </div>
-    <div class="row border mt-1" id="hello">
-        <div class="alert alert-link">
-            <div>
-                <span class="px-2"> Glucose level (average): 120 <i>mg/Ld</i> </span>
-            </div>
-            <div class="px-2">
-                <span class="fs-6 text-muted pe-1"> in the last 30 days</span>
-                <!-- <i (click)="change()" class="fake-link bi bi-gear-fill"></i> -->
+    <div class="row mt-1">
+        <div class="card">
+            <div class="card-body">
+                <sacchon-patient-avg-item desc='Glucose level (Avg):' unit="mg/ld" #glucose
+                    (onChange)="getAvg('glucose',$event,glucose)"></sacchon-patient-avg-item>
             </div>
         </div>
-        <div class="alert alert-link">
-            <div>
-                <span class="px-2"> Carb intake (average): 120 <i>g</i> </span>
-            </div>
-            <div class="px-2">
-                <span class="fs-6 text-muted pe-1"> in the last 30 days</span>
-                <!-- <i (click)="change()" class="fake-link bi bi-gear-fill"></i> -->
+    </div>
+    <div class="row mt-1">
+        <div class="card">
+            <div class="card-body">
+                <sacchon-patient-avg-item desc='Carb intake (Avg):' unit="g" #carb (onChange)="getAvg('carb',$event,carb)">
+                </sacchon-patient-avg-item>
             </div>
         </div>
     </div>
 </div>
+<ng-template #spin>
+    <div #spin class='spinner-border text-primary d-block mx-auto my-3' role='status'></div>
+</ng-template>
