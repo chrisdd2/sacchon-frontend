@@ -1,8 +1,6 @@
-<<<<<<< HEAD
+
 import { DoctorModule } from './doctor/doctor.module';
-=======
 import { PatientModule } from './patient/patient.module';
->>>>>>> datepicker
 import { FakeBackendInterceptor } from './common/fake-backend.interceptor';
 import { AuthInterceptor } from './common/auth.interceptor';
 import { AuthService } from './services/auth.service';
