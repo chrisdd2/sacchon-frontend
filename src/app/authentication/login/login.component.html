@@ -4,15 +4,13 @@
             <form [formGroup]="form" (ngSubmit) = 'onSubmit()'class="my-5" novalidate >
                 <div class="form-group">
                     <label for="usr">Username</label>
-                    <input formControlName='usr' id="usr" type="text" class="form-control" [class.is-invalid]='form.controls.usr.invalid' placeholder="Enter username">
+                    <input [formControl] ='form.controls.usr' id="usr" type="text" class="form-control" [class.is-invalid]='form.controls.usr.errors?.required' placeholder="Enter username">
                 </div>
                 <div class="form-group mt-2">
                     <label for="pwd">Password</label>
-                    <input formControlName='pwd' id="pwd" type="password" class="form-control" [class.is-invalid]='form.controls.pwd.invalid' placeholder="Enter password">
+                    <input formControlName='pwd' id="pwd" type="password" class="form-control" [class.is-invalid]='form.controls.pwd.errors?.required' placeholder="Enter password">
                 </div>
-                <div *ngIf='loggingIn' class='spinner-border text-primary d-block mx-auto my-3' role='status'></div>
-
-                <div *ngIf='!loggingIn' class="mt-3">
+                <div *ngIf='!loggingIn;else spin' class="mt-3">
                     <button type='submit' class='form-control btn btn-primary'>Sign in</button>
                     <p class='pt-1'>Don't have an account? <a routerLink='./signup'>Create one!</a></p>
                 </div>
@@ -21,3 +19,6 @@
         </div>
     </div>
 </div>
+<ng-template #spin>
+    <div class='spinner-border text-primary d-block mx-auto my-3' role='status'></div>
+</ng-template>

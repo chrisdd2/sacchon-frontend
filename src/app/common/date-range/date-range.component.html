@@ -1,5 +1,5 @@
 <div class='mt-1'>
-    <form [formGroup]='form' novalidate>
+    <form [formGroup]='form' (ngSubmit)= 'onSave()' novalidate>
         <div class="row">
             <div class="col">
                 <div class="form-group">
@@ -26,8 +26,7 @@
         </div>
         <div class="row my-2">
             <div class="form-group">
-                <button type="button" (click)='onSave()'
-                    class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-primary">Save</button>
                 <button type="button" class="ms-1 btn btn-primary" (click)='onCancel.emit()'>Cancel</button>
             </div>
         </div>

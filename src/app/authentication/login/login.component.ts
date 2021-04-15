@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'sacchon-login',
@@ -20,8 +20,8 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.loggingIn = false;
     this.form = this.fb.group({
-      usr: ['', [Validators.required]],
-      pwd: ['', [Validators.required]]
+      usr: new FormControl(null,Validators.required),
+      pwd: new FormControl(null,Validators.required)
     })
   }
 
