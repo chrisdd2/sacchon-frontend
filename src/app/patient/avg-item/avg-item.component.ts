@@ -22,9 +22,9 @@ export class AvgItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.period ='in the last 30 days';
     this.changing=false;
     this.loading=false;
+    this.onSubmit(new Date(Date.now()-30*1000*3600*24),null)
   }
 
   onSubmit(start:Date,end:Date){
