@@ -1,8 +1,8 @@
-import { DataService, AvgItem } from './../../services/data.service';
+import { DateRange } from './../../common/date-range/date-range.component';
+import { DataService } from './../../services/data.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Patient } from 'src/app/models/patient.model';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Component({
   selector: 'sacchon-patient-home',
@@ -27,11 +27,11 @@ export class PatientHomeComponent implements OnInit {
   }
 
 
-  getAvg(type:string,range:Date[],elem:any){
+  getAvg(type:string,{start,end}:DateRange,elem:any){
     elem.loading=true;
-    const start = range[0]? range[0].getTime(): 0;
-    const end = range[1]? range[1].getTime(): 0;
-    this.data.getPatientAvg(type,start,end)
+    const dstart = start? start.getTime(): 0;
+    const dend = end? end.getTime(): 0;
+    this.data.getPatientAvg(type,dstart,dend)
     .subscribe(
       avg => {
         elem.value=avg.avg;

@@ -1,5 +1,5 @@
-import { AvgItemComponent } from './avg-item/avg-item.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from './../common/shared.module';
+import { PatientAvgItemComponent } from './patient-avg-item/patient-avg-item.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -24,11 +24,11 @@ export const routes: Routes = [
   declarations: [
     PatientRootComponent,
     PatientHomeComponent,
-    AvgItemComponent
+    PatientAvgItemComponent
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule,
+    SharedModule,
     RouterModule.forChild(routes)
   ]
 })
