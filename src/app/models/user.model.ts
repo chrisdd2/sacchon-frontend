@@ -6,3 +6,4 @@ export class User {
     auth_token:string;
     expires_at:number;
 }
+

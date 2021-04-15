@@ -1,3 +1,4 @@
+import { DoctorComponent } from './doctor.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -7,18 +8,18 @@ import { RouterModule, Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '', 
-    component:null ,
+    component:DoctorComponent ,
     children:[
       {path:'', redirectTo:'home', pathMatch:'prefix'},
-      {path: 'home', component:null},
-      {path: 'medical', component:null},
-      {path: 'consults', component:null}
+      {path: 'home', component:DoctorComponent},
+      {path: 'medical', component:DoctorComponent},
+      {path: 'consults', component:DoctorComponent}
     ]
   }
 ];
 
 @NgModule({
-  declarations: [],
+  declarations: [DoctorComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
