@@ -3,11 +3,11 @@
         <div class="col col-md-3 col-lg-3 m-auto">
             <form [formGroup]="form" (ngSubmit) = 'onSubmit()'class="my-5" novalidate >
                 <div class="form-group">
-                    <label for="usr">Username</label>
+                    <label class="form-label" for="usr">Username</label>
                     <input [formControl] ='form.controls.usr' id="usr" type="text" class="form-control" [class.is-invalid]='form.controls.usr.errors?.required' placeholder="Enter username">
                 </div>
                 <div class="form-group mt-2">
-                    <label for="pwd">Password</label>
+                    <label class="form-label" for="pwd">Password</label>
                     <input formControlName='pwd' id="pwd" type="password" class="form-control" [class.is-invalid]='form.controls.pwd.errors?.required' placeholder="Enter password">
                 </div>
                 <div *ngIf='!loggingIn;else spin' class="mt-3">

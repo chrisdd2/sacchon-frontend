@@ -1,1 +1,44 @@
-<p>signup works!</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col col-md-6 col-lg-6 m-auto">
+            <form class="mt-4" *ngIf="account_type=='';else create">
+                <h5>
+                    Select the type of account you want to create
+                </h5>
+                <button type="button" class="btn btn-primary form-control my-2" (click)='account_type="patient"'>Patient</button>
+                <button type="button" class="btn btn-primary form-control" (click)='account_type="Doctor"'>Doctor</button>
+            </form>
+            <ng-template #create>
+                <form [formGroup] ='form' (ngSubmit)='onSubmit()'  class="mt-4" novalidate>
+                    <h2>Account Info</h2>
+                    <div class="mb-3">
+                        <label class="form-label" for="firstName">First name</label>
+                        <input [formControl] = 'form.controls.firstName' type="text" id="firstName" class="form-control" placeholder="Enter first name">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="lastName">Last name</label>
+                        <input [formControl] = 'form.controls.lastName' type="text" id="lastName" class="form-control" placeholder="Enter last name">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="email">E-mail</label>
+                        <input [formControl] = 'form.controls.email' type="email" id="email" class="form-control" placeholder="Enter email address"
+                            aria-describedby="emailHelp">
+                        <div id="emailHelp" class="form-text">It will be used as username in the login process</div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="password">Password</label>
+                        <input [formControl] = 'form.controls.password' type="password" id="password" class="form-control" placeholder="Enter password">
+                        <input [formControl] = 'form.controls.passwordConfirm' type="password" class="form-control mt-1" placeholder="Confirm password">
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-primary">Create account!</button>
+                        <button type="button "class="btn btn-secondary mx-2">Clear form</button>
+                    </div>
+                </form>
+            </ng-template>
+        </div>
+    </div>
+</div>
+<ng-template #spin>
+    <div class='spinner-border text-primary d-block mx-auto my-3' role='status'></div>
+</ng-template>
