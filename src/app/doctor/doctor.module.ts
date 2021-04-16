@@ -3,6 +3,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
+import { SharedModule } from '../common/shared.module';
 
 
 export const routes: Routes = [
@@ -22,6 +23,7 @@ export const routes: Routes = [
   declarations: [DoctorComponent],
   imports: [
     CommonModule,
+    SharedModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes)
   ]

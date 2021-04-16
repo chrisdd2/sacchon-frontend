@@ -3,17 +3,19 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DateRangeComponent } from './date-range/date-range.component';
-
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [DateRangeComponent],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   exports:[
-    DateRangeComponent
+    DateRangeComponent,
+    FormsModule
   ]
 })
 export class SharedModule { }

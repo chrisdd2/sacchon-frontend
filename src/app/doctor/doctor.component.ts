@@ -1,3 +1,4 @@
+import { Validators } from '@angular/forms';
 import { PatientsService } from './../services/patients.service';
 
 import { Component, OnInit } from '@angular/core';
@@ -15,18 +16,26 @@ export class DoctorComponent implements OnInit {
 
 
   patients: Patients[];
-  constructor(public auth:AuthService, private patientsService:PatientsService) { 
+  currentPatient:Patients;
+  // form:FormGroup;
+  constructor(public auth:AuthService, private patientsService:PatientsService){
+    // ,private fb:FormBuilder) { 
     this.patients = patientsService.getData();
+    this.currentPatient=new Patients(null,null,null);
     console.log(this.patients);
   }
 
-  addConsultation(id:string, name:string, consultation:string){
-    this.patients.push(new Patients(id, name,consultation));
+  addConsultation(){
+    console.log('Adding a new consultation of patient ${name.value} with new consultation: ${consultation.value}');
+    this.patients.push(new Patients(this.currentPatient.id,this.currentPatient.name,this.currentPatient.consultation));
     return false;
   }
 
-  ngOnInit(): void {
-  
+  onClickPatient(patient)
+  {
+    this.currentPatient=patient;
   }
 
+  ngOnInit(): void {
+  }
 }

@@ -16,9 +16,6 @@ import { ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { HomeComponent } from './common/home/home.component';
 import { PatientsService } from './services/patients.service';
 
-// testing branch changes
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +27,8 @@ import { PatientsService } from './services/patients.service';
     AppRoutingModule,
     AuthenticationModule,
     HttpClientModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
+    
   ],
   providers: [
     FormBuilder,
