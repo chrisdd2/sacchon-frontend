@@ -17,7 +17,7 @@ import { Patient } from '../models/patient.model';
 
 const users: User[] = [
   { firstName: "christos-patient", lastName: "damianidis", email: "patient@gmail.com", role: "patient", auth_token: "token-patient", expires_at: Number.MAX_VALUE },
-  { firstName: "christos-doctor", lastName: "damianidis", email: "doctor@gmail.com", role: "doctor", auth_token: "token-doctor", expires_at: Number.MAX_VALUE },
+  { firstName: "name-doctor", lastName: "lastname", email: "doctor@gmail.com", role: "doctor", auth_token: "token-doctor", expires_at: Number.MAX_VALUE },
   { firstName: "christos-reporter", lastName: "damianidis", email: "reporter@gmail.com", role: "doctor", auth_token: "token-reporter", expires_at: Number.MAX_VALUE }
 ];
 

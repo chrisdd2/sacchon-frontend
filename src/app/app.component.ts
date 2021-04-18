@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'sacchon-root',
@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'sacchon-app';
+
+  bgColor = 'grey';
+
+  status = false;
+
+  constructor(private renderer: Renderer2) {
+  }
 }

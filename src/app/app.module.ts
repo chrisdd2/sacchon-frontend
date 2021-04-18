@@ -13,6 +13,7 @@ import { AuthenticationModule } from './authentication/authentication.module';
 import { PatientsService } from './services/patients.service';
 import { ErrorInterceptor } from './common/error.interceptor';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,10 @@ import { ErrorInterceptor } from './common/error.interceptor';
     AppRoutingModule,
     AuthenticationModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule,
+    NgbModule
+    
   ],
   providers: [
     AuthService,

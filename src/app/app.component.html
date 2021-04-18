@@ -1,2 +1,17 @@
-<sacchon-header></sacchon-header>
-<router-outlet></router-outlet>
+<div class="home-container" [ngClass]="status ? 'dark-theme' : 'light-theme'">
+    <sacchon-header></sacchon-header>
+    <br>
+    <div class="dropdown">
+        <button style="float: right; margin: 5px;"
+         class="btn btn-secondary dropdown-toggle" 
+         type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Select Theme
+        </button> 
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" (click)="status = false">Light Theme</a>
+            <a class="dropdown-item" (click)="status = true">Dark Theme</a>
+        </div>
+    <div>
+    <br>
+    <router-outlet></router-outlet>
+</div>
