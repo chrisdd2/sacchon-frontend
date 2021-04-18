@@ -1,24 +1,24 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col col-md-3 col-lg-3 m-auto">
-            <form [formGroup]="form" (ngSubmit) = 'onSubmit()'class="my-5" novalidate >
-                <div class="form-group">
-                    <label for="usr">Username</label>
-                    <input [formControl] ='form.controls.usr' id="usr" type="text" class="form-control" [class.is-invalid]='form.controls.usr.errors?.required' placeholder="Enter username">
-                </div>
-                <div class="form-group mt-2">
-                    <label class="form-label" for="pwd">Password</label>
-                    <input formControlName='pwd' id="pwd" type="password" class="form-control" [class.is-invalid]='form.controls.pwd.errors?.required' placeholder="Enter password">
-                </div>
-                <div *ngIf='!loggingIn;else spin' class="mt-3">
-                    <button type='submit' class='form-control btn btn-primary'>Sign in</button>
-                    <p class='pt-1'>Don't have an account? <a routerLink='./signup'>Create one!</a></p>
-                </div>
-            </form>
-            <div *ngIf='error' class='alert alert-danger'> {{ error.description }} </div>
-        </div>
-    </div>
-</div>
+<mat-card>
+    <mat-card-title>Login</mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <p>
+                <mat-form-field>
+                    <input type="text" [formGroup]="form.controls.usr" matInput placeholder="Username" formControlName="username">
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field>
+                    <input type="password" [formGroup]="form.controls.pwd" matInput placeholder="Password" formControlName="password">
+                </mat-form-field>
+            </p>
+            <p *ngIf="error" class="error"> {{ error }} </p>
+            <div class="button">
+                <button type="submit" mat-button>Login</button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>
 <ng-template #spin>
     <div class='spinner-border text-primary d-block mx-auto my-3' role='status'></div>
 </ng-template>

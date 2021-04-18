@@ -1,10 +1,10 @@
+import { SharedModule } from './../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { Routes, RouterModule } from '@angular/router';
-
 export const routes:Routes=[
   { path: '',redirectTo: 'login', pathMatch: 'prefix'},
   { path: 'login', component: LoginComponent },
@@ -19,7 +19,8 @@ export const routes:Routes=[
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    SharedModule
   ],
 })
 export class AuthenticationModule { }
