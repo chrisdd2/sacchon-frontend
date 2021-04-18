@@ -17,9 +17,7 @@ export class DoctorComponent implements OnInit {
 
   patients: Patients[];
   currentPatient:Patients;
-  // form:FormGroup;
   constructor(public auth:AuthService, private patientsService:PatientsService){
-    // ,private fb:FormBuilder) { 
     this.patients = patientsService.getData();
     this.currentPatient=new Patients(null,null,null);
     console.log(this.patients);
