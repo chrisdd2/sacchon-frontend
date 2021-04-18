@@ -1,23 +1,20 @@
+import { SignUpForm } from './../common/api-info';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, Optional, SkipSelf } from '@angular/core';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
 import { User } from '../models/user.model';
+import { ApiRoutes } from "../common/api-info";
 
 
-export type SignUpFields ={
-  firstName:string;
-  lastName:string;
-  email:string;
-  passwod:string;
-  type:string;
+export type SignUpFields = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  passwod: string;
+  type: string;
 }
 
-const authRoutes ={
-  signup : environment.apiUrl + "/auth/signup",
-  login : environment.apiUrl + "/auth/login"
-}
 
 @Injectable({
   providedIn: 'root'
@@ -38,8 +35,8 @@ export class AuthService {
   }
 
 
-  public signUp(firstName: string, lastName: string, email: string, password: string, type: string): Observable<any> {
-    return this.http.post<User>(authRoutes.signup, { firstName, lastName, email, password, type })
+  public signUp(form:SignUpForm): Observable<any> {
+    return this.http.post<User>(ApiRoutes.signup,form)
       .pipe(
         map(user => {
           this.userSubject.next(user)
@@ -53,8 +50,8 @@ export class AuthService {
   public logIn(usr: string, pwd: string): Observable<any> {
     const loginUrl = "/api/login";
     if (this.isLoggedIn())
-      return throwError({ error: 'Already logged in' }); // should never run
-    return this.http.post<User>(authRoutes.login, { username:usr, password: pwd })
+      return throwError({ description: 'Already logged in' }); 
+    return this.http.post<User>(ApiRoutes.login, { username: usr, password: pwd })
       .pipe(
         map(user => {
           this.userSubject.next(user);

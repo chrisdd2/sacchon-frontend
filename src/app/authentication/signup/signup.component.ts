@@ -1,7 +1,9 @@
+import { SignUpFields } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, ɵangular_packages_forms_forms_bh } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { SignUpForm } from 'src/app/common/api-info';
 
 @Component({
   selector: 'sacchon-signup',
@@ -31,13 +33,15 @@ export class SignupComponent implements OnInit {
   onSubmit(){
     if ( this.form.invalid)
       return;
-    this.auth.signUp(
-      this.form.controls.firstName.value,
-      this.form.controls.lastName.value,
-      this.form.controls.email.value,
-      this.form.controls.password.value,
-      this.account_type
-    ).subscribe(
+    const form:SignUpForm={
+      firstName:this.form.controls.firstName.value,
+      lastName:this.form.controls.lastName.value,
+      email:this.form.controls.email.value,
+      password:this.form.controls.password.value,
+      role:this.account_type
+    };
+    this.error=null;
+    this.auth.signUp(form).subscribe(
       u => {
         console.log(u);
         this.router.navigateByUrl(this.auth.getHomeRoute());

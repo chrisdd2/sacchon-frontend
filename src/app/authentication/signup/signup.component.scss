@@ -1,0 +1,25 @@
+form{
+    display:flex;
+    justify-content: center;
+    width:100%;
+    margin: 10vh 0;
+}
+mat-card{
+    max-width: 80%;
+}
+mat-card-title{
+    display:flex;
+    justify-content: center;
+}
+mat-content{
+    display:flex;
+    flex-direction:column;
+}
+div.button{
+    display:flex;
+    justify-content: center;
+}
+button{
+    margin: 20px;
+    flex-grow: 1;
+}

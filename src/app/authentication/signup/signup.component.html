@@ -1,45 +1,44 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col col-md-6 col-lg-6 m-auto">
-            <form class="mt-4" *ngIf="account_type=='';else create">
-                <h5>
-                    Select the type of account you want to create
-                </h5>
-                <button type="button" class="btn btn-primary form-control my-2" (click)='account_type="patient"'>Patient</button>
-                <button type="button" class="btn btn-primary form-control" (click)='account_type="Doctor"'>Doctor</button>
-            </form>
-            <ng-template #create>
-                <form [formGroup] ='form' (ngSubmit)='onSubmit()'  class="mt-4" novalidate>
-                    <h2>Account Info</h2>
-                    <div class="mb-3">
-                        <label class="form-label" for="firstName">First name</label>
-                        <input [formControl] = 'form.controls.firstName' type="text" id="firstName" class="form-control" placeholder="Enter first name">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="lastName">Last name</label>
-                        <input [formControl] = 'form.controls.lastName' type="text" id="lastName" class="form-control" placeholder="Enter last name">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="email">E-mail</label>
-                        <input [formControl] = 'form.controls.email' type="email" id="email" class="form-control" placeholder="Enter email address"
-                            aria-describedby="emailHelp">
-                        <div id="emailHelp" class="form-text">It will be used as username in the login process</div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="password">Password</label>
-                        <input [formControl] = 'form.controls.password' type="password" id="password" class="form-control" placeholder="Enter password">
-                        <input [formControl] = 'form.controls.passwordConfirm' type="password" class="form-control mt-1" placeholder="Confirm password">
-                    </div>
+<div class="base-container">
+    <form *ngIf="account_type=='';else create">
+        <mat-card>
+            <mat-card-title> Select account type </mat-card-title>
+            <mat-card-content>
+                <div class="button">
+                    <button mat-flat-button color="primary" (click)='account_type="patient"'>Patient</button>
+                    <button mat-flat-button color="primary" (click)='account_type="doctor"'>Patient</button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </form>
+    <ng-template #create>
+        <form [formGroup]='form' (ngSubmit)='onSubmit()' novalidate>
+            <mat-card>
+                <mat-card-title>Account creation</mat-card-title>
+            <mat-content>
+                    <mat-form-field>
+                        <input type="text" formControlName="firstName" matInput placeholder="First name">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input type="text" formControlName="lastName" matInput placeholder="Last name">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input type="email" formControlName="email" matInput placeholder="Email">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input type="password" formControlName="password" matInput placeholder="Password">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input type="password" formControlName="passwordConfirm" matInput placeholder="Confirm password">
+                    </mat-form-field>
                     <div>
-                        <button type="submit" class="btn btn-primary">Create account!</button>
-                        <button type="button "class="btn btn-secondary mx-2">Clear form</button>
+                        <button type="submit" mat-flat-button color="primary" >Create account!</button>
+                        <button type="button " mat-flat-button >Clear form</button>
                     </div>
-                    <div *ngIf='error' class='alert alert-danger'> {{ error.message }} </div>
-                </form>
-            </ng-template>
-        </div>
-    </div>
-</div>
-<ng-template #spin>
-    <div class='spinner-border text-primary d-block mx-auto my-3' role='status'></div>
-</ng-template>
+                    <div *ngIf='error' class="error"> {{ error.description }} </div>
+            </mat-content>
+            </mat-card>
+        </form>
+    </ng-template>
+    <ng-template #spin>
+        <div class='spinner-border text-primary d-block mx-auto my-3' role='status'></div>
+    </ng-template>

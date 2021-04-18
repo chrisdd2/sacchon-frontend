@@ -15,6 +15,7 @@ import { ErrorInterceptor } from './common/error.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     PatientsService,
     {provide: HTTP_INTERCEPTORS, useClass:ErrorInterceptor, multi:true},
     {provide: HTTP_INTERCEPTORS, useClass:AuthInterceptor, multi:true},
-    {provide: HTTP_INTERCEPTORS, useClass:FakeBackendInterceptor,multi:true}
+    // {provide: HTTP_INTERCEPTORS, useClass:FakeBackendInterceptor,multi:true}
   ],
   bootstrap: [AppComponent]
 })

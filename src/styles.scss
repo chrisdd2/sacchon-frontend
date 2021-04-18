@@ -3,3 +3,16 @@
 @import '~bootstrap/scss/bootstrap';
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.base-container{
+    display:flex;
+    justify-content: center;
+}
+
+
+.error {
+  padding: 16px;
+  width: 300px;
+  color: white;
+  background-color: red;
+}
