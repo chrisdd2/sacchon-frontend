@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { PatientsService } from './services/patients.service';
 import { ErrorInterceptor } from './common/error.interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -23,14 +24,15 @@ import { ErrorInterceptor } from './common/error.interceptor';
     AppRoutingModule,
     AuthenticationModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    BrowserAnimationsModule
   ],
   providers: [
     AuthService,
     PatientsService,
     {provide: HTTP_INTERCEPTORS, useClass:ErrorInterceptor, multi:true},
-    {provide: HTTP_INTERCEPTORS, useClass:AuthInterceptor, multi:true}
-    // {provide: HTTP_INTERCEPTORS, useClass:FakeBackendInterceptor,multi:true}
+    {provide: HTTP_INTERCEPTORS, useClass:AuthInterceptor, multi:true},
+    {provide: HTTP_INTERCEPTORS, useClass:FakeBackendInterceptor,multi:true}
   ],
   bootstrap: [AppComponent]
 })
