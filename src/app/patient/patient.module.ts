@@ -1,4 +1,4 @@
-import { SharedModule } from './../common/shared.module';
+import { SharedModule } from '../shared/shared.module';
 import { PatientAvgItemComponent } from './patient-avg-item/patient-avg-item.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule, Component } from '@angular/core';

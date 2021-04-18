@@ -1,3 +1,4 @@
+import { SharedModule } from '../shared/shared.module';
 import { DoctorComponent } from './doctor.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -22,7 +23,7 @@ export const routes: Routes = [
   declarations: [DoctorComponent],
   imports: [
     CommonModule,
-    ReactiveFormsModule,
+    SharedModule,
     RouterModule.forChild(routes)
   ]
 })

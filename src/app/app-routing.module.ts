@@ -1,9 +1,7 @@
 import { NotLoggedGuard } from './common/notlogged.guard';
-import { HomeComponent } from './common/home/home.component';
-import { LoginComponent } from './authentication/login/login.component';
+import { HomeComponent } from './shared/home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthenticationModule } from './authentication/authentication.module';
 import { RoleGuard } from './common/role.guard';
 
 const routes: Routes = [

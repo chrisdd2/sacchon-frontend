@@ -1,3 +1,4 @@
+import { SignUpFields } from './../services/auth.service';
 import { AvgItem, dataRoutes } from './../services/data.service';
 import { Injectable } from '@angular/core';
 import {
@@ -31,7 +32,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
   wrap(v: any) {
     return of(new HttpResponse({ status: 200, body: v }))
   }
-  handleRequest(request:HttpRequest<unknown>, next:HttpHandler): Observable<HttpEvent<unknown>> {
+  handleRequest(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     if (request.url.endsWith('/api/login') && request.method == 'POST') {
       const { usr, pwd } = request.body as any;
       const user = users.find(u => usr == u.email);
@@ -39,30 +40,46 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         return this.wrap(user);
       return throwError({ error: `user ${usr} not found` });
     }
-    else if ( request.url.endsWith(dataRoutes['patient-info']) && request.method=="GET"){
-      const user:User = this.getUserFromHeaders(request);
-      if ( user ){
-        return this.wrap( <Patient>{
+    else if (request.url.endsWith('/api/signup') && request.method == 'POST') {
+      const fields: SignUpFields = request.body as SignUpFields;
+      let user = users.find(u => fields.email == u.email);
+      if (user)
+        return throwError({ error: `email ${fields.email} already in use` });
+      user = {
+        firstName: fields.firstName,
+        lastName: fields.lastName,
+        email: fields.email,
+        role: fields.type,
+        auth_token: fields.email + 'token',
+        expires_at: Number.MAX_VALUE
+      };
+      users.push(user);
+      return this.wrap(user);
+    }
+    else if (request.url.endsWith(dataRoutes['patient-info']) && request.method == "GET") {
+      const user: User = this.getUserFromHeaders(request);
+      if (user) {
+        return this.wrap(<Patient>{
           name: user.firstName + ' ' + user.lastName,
           doctor: '',
-          doctor_url:'',
+          doctor_url: '',
           email: user.email
         });
       }
-      return throwError({error: 'cannot find user-info' });
+      return throwError({ error: 'cannot find user-info' });
     }
-    else if( request.url.indexOf(dataRoutes['patient-avg']) >=0 && request.method=="GET"){
-      return this.wrap( <AvgItem>{
-        avg:120,
+    else if (request.url.indexOf(dataRoutes['patient-avg']) >= 0 && request.method == "GET") {
+      return this.wrap(<AvgItem>{
+        avg: 120,
       });
     }
     else
       return next.handle(request);
   }
 
-  private getUserFromHeaders(request:HttpRequest<unknown>):User{
+  private getUserFromHeaders(request: HttpRequest<unknown>): User {
     const token = request.headers.get("Authorization");
-    const user = users.find( u => 'Bearer '+u.auth_token == token);
+    const user = users.find(u => 'Bearer ' + u.auth_token == token);
     return user;
   }
 }

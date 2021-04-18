@@ -1,4 +1,4 @@
-import { DateRange } from './../../common/date-range/date-range.component';
+import { DateRange } from '../../shared/date-range/date-range.component';
 import { DataService } from './../../services/data.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';

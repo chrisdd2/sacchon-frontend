@@ -18,7 +18,7 @@ export class AuthInterceptor implements HttpInterceptor {
       if( this.auth.user && this.auth.user.auth_token ) // should never be false inside here 
         request = request.clone({
           setHeaders: {
-            Authorization: `Bearer ${this.auth.user.auth_token}`
+            Authorization: `Basic ${this.auth.user.auth_token}`
           }
         });
     }

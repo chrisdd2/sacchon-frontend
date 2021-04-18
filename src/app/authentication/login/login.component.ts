@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ApiError } from 'src/app/models/api-error.model';
 
 @Component({
   selector: 'sacchon-login',
@@ -11,7 +12,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class LoginComponent implements OnInit {
   form: FormGroup;
   loggingIn: boolean;
-  error: any;
+  error: ApiError;
 
   constructor(private auth: AuthService,
     private fb: FormBuilder,
@@ -34,8 +35,8 @@ export class LoginComponent implements OnInit {
           console.log('succesfull login', u);
           this.router.navigateByUrl(this.auth.getHomeRoute());
         },
-        er => {
-          this.error = {message: er.error};
+        (err: ApiError) => {
+          this.error = err;
         }
       )
   }

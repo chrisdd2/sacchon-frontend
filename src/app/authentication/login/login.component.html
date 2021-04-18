@@ -3,7 +3,7 @@
         <div class="col col-md-3 col-lg-3 m-auto">
             <form [formGroup]="form" (ngSubmit) = 'onSubmit()'class="my-5" novalidate >
                 <div class="form-group">
-                    <label class="form-label" for="usr">Username</label>
+                    <label for="usr">Username</label>
                     <input [formControl] ='form.controls.usr' id="usr" type="text" class="form-control" [class.is-invalid]='form.controls.usr.errors?.required' placeholder="Enter username">
                 </div>
                 <div class="form-group mt-2">
@@ -15,7 +15,7 @@
                     <p class='pt-1'>Don't have an account? <a routerLink='./signup'>Create one!</a></p>
                 </div>
             </form>
-            <div *ngIf='error' class='alert alert-danger'> {{ error.message }} </div>
+            <div *ngIf='error' class='alert alert-danger'> {{ error.description }} </div>
         </div>
     </div>
 </div>

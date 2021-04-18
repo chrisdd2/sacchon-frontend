@@ -1,4 +1,4 @@
-import { DateRange } from '../../common/date-range/date-range.component';
+import { DateRange } from '../../shared/date-range/date-range.component';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
