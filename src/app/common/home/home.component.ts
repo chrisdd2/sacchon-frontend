@@ -9,6 +9,8 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HomeComponent implements OnInit {
 
+  bgColor = 'grey';
+
   constructor(private auth:AuthService,
               private router:Router) { }
 

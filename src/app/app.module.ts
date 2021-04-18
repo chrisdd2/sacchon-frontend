@@ -15,6 +15,7 @@ import { HeaderComponent } from './common/header/header.component';
 import { ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { HomeComponent } from './common/home/home.component';
 import { PatientsService } from './services/patients.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { PatientsService } from './services/patients.service';
     AppRoutingModule,
     AuthenticationModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
     
   ],
   providers: [
