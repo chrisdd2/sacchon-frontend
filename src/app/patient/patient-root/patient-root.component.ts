@@ -14,21 +14,23 @@ export class PatientRootComponent implements OnInit, OnDestroy, AfterViewInit{
 
   patient:Patient;
   active = new Subject<Boolean>()
+  showToolBar:boolean;
   
 
   constructor(private breakpoint:BreakpointObserver,  private data:DataService) { 
   }
   ngAfterViewInit():void{
     this.breakpoint.observe('(max-width: 960px)').subscribe( (res) => {
-      console.log(res);
 
-      // if( res.matches ){
-      //   this.sidenav.mode = 'over';
-      //   this.sidenav.close();
-      // } else{
-      //   this.sidenav.mode = 'side';
-      //   this.sidenav.open();
-      // }
+      if( res.matches ){
+        this.sidenav.mode = 'over';
+        this.sidenav.close();
+        this.showToolBar=true;
+      } else{
+        this.sidenav.mode = 'side';
+        this.sidenav.open();
+        this.showToolBar=false;
+      }
     })
     console.log(this.sidenav);
   }

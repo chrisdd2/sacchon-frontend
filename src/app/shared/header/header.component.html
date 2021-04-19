@@ -1,17 +1,16 @@
 <div>
   <mat-toolbar color="primary">
-    <mat-icon>
-        accessibility_new
-    </mat-icon>
-    <span>Sacchon App</span>
+    <a class="legend" routerLink="/">
+      <mat-icon> accessibility_new </mat-icon>
+      <span>Sacchon App</span>
+    </a>
     <div id="tool-button">
-      
       <button mat-button [matMenuTriggerFor]="user?menuLogin:menu">
         <mat-icon>menu</mat-icon>
       </button>
-      <mat-menu #menuLogin >
+      <mat-menu #menuLogin>
         <button mat-menu-item routerLink="/auth/settings">Account settings</button>
-        <button mat-menu-item (click) ='logOut();' >Logout</button>
+        <button mat-menu-item (click)='logOut();'>Logout</button>
       </mat-menu>
       <mat-menu #menu>
         <button mat-menu-item routerLink="/auth/login">Login</button>

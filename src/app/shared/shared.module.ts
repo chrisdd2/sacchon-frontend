@@ -30,10 +30,10 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    MatToolbarModule,
-    MatSidenavModule,
     MatListModule,
     MatMenuModule,
+    MatToolbarModule,
+    MatSidenavModule,
     LayoutModule
   ],
   exports:[
@@ -43,7 +43,12 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatCardModule,
     MatInputModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatListModule,
+    MatMenuModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    LayoutModule
   ]
 })
 export class SharedModule { }
