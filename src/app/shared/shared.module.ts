@@ -15,6 +15,9 @@ import {MatListModule} from '@angular/material/list';
 import {MatMenuModule} from '@angular/material/menu';
 import { LayoutModule } from '@angular/cdk/layout';
 import {MatBadgeModule} from '@angular/material/badge';
+import {MatTabsModule} from '@angular/material/tabs'
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,10 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatToolbarModule,
     MatSidenavModule,
     MatBadgeModule,
-    LayoutModule
+    LayoutModule,
+    MatTabsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   exports:[
     DateRangeComponent,
@@ -50,7 +56,10 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatToolbarModule,
     MatSidenavModule,
     MatBadgeModule,
-    LayoutModule
+    LayoutModule,
+    MatTabsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
 export class SharedModule { }

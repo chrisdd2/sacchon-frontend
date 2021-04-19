@@ -1,3 +1,4 @@
+import { createAbstractBuilder } from 'typescript';
 import { environment } from './../../environments/environment.prod';
 
 const prefix = "http://localhost:9000"
@@ -12,6 +13,7 @@ export const ApiRoutes = {
             carb: prefix + "/api/patient/average/carb",
             glucose: prefix + "/api/patient/average/glucose"
         },
+        count : prefix + "/api/patient/count",
         consult: prefix + "/api/patient/consultation"
     },
     doctor: {
@@ -53,4 +55,8 @@ export type ConsultationForm = {
     id: number;
     text: string;
     date: string;
+}
+export type RecordCounts = {
+    carbs:number;
+    glucose:number;
 }

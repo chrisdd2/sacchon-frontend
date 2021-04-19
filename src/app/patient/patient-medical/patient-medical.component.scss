@@ -1,0 +1,24 @@
+mat-card{
+    margin:10px;
+}
+
+.overview-row{
+    display:flex;
+    flex-direction:row;
+}
+.overview-column {
+    display:flex;
+    flex-direction:column;
+    justify-content: space-evenly;
+}
+
+.overview-column div {
+    margin-right: 30px;
+    white-space:nowrap;
+}
+.m-top{
+    margin-top: 20px;
+}
+.p-top-10{
+    padding-top:12px;
+}

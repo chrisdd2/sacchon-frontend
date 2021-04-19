@@ -33,7 +33,7 @@ export class PatientRootComponent implements OnInit , AfterViewInit{
       }
     })
     this.patientSrv.getPatientInfo().subscribe(
-      p => this.patient=p,
+      p =>{ this.patient=p},
       er => console.log(er)
     )
   }

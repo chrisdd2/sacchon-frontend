@@ -20,7 +20,8 @@ export class AuthInterceptor implements HttpInterceptor {
       if( this.auth.user && this.auth.user.authToken)
         request = request.clone({
           setHeaders: {
-            Authorization: `Basic ${this.auth.user.authToken}`
+            Authorization: `Basic ${this.auth.user.authToken}`,
+            'Content-Type':'application/json'
           }
         });
     }

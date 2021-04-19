@@ -6,9 +6,11 @@
 </mat-toolbar>
 <mat-sidenav-container>
     <mat-sidenav #sidenav>
+        <div>
         <a mat-stroked-button routerLink="./home">Home</a>
         <a mat-stroked-button routerLink="./medical">MedicalDataRepo <span *ngIf='hasNotification()' matBadge="!" matBadgePosition="after" matBadgeColor="accent" matBadgeOverlap="false"></span></a>
         <a mat-stroked-button routerLink="./advice">DoctorAdvice</a>
+        </div>
     </mat-sidenav>
     <mat-sidenav-content>
         <router-outlet></router-outlet>
