@@ -22,10 +22,15 @@ export type SignUpFields = {
 export class AuthService {
   private _user: BehaviorSubject<User>;
 
-  constructor(private http: HttpClient, @Optional() @SkipSelf() auth: AuthService) {
+  constructor(private http:HttpClient, @Optional() @SkipSelf() parent?: AuthService) {
     this._user = new BehaviorSubject<User>(this.getUserFromStorage());
+    if (parent) {
+      throw Error(
+        `[AuthService]: trying to create multiple instances,
+        but this service should be a singleton.`
+      );
+    }
   }
-
   public get user(): User {
     return this._user.value;
   }
@@ -61,18 +66,13 @@ export class AuthService {
       );
   }
   public logOut() {
+    console.log("wfei");
     this.userSubject.next(null);
     this.clearUserStorage();
   }
 
   public isLoggedIn(): boolean {
-    if (!this.user)
-      return false;
-    if (this.isSessionExpired(this.user)) {
-      this.clearUserStorage();
-      return false;
-    }
-    return true;
+    return this.user != null;
   }
 
   public getHomeRoute(): string {
@@ -84,18 +84,11 @@ export class AuthService {
     }
   }
 
-  private isSessionExpired(user: User): boolean {
-    return Date.now() > user.expires_at;
-  }
 
   private getUserFromStorage(): User {
     const user: User = JSON.parse(sessionStorage.getItem('sacchon-user'));
     if (!user)
       return null;
-    if (this.isSessionExpired(user)) {
-      this.clearUserStorage();
-      return null;
-    }
     return user;
   }
 

@@ -32,9 +32,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   providers: [
     AuthService,
-    PatientsService,
-    {provide: HTTP_INTERCEPTORS, useClass:ErrorInterceptor, multi:true},
-    {provide: HTTP_INTERCEPTORS, useClass:AuthInterceptor, multi:true}
+    {provide: HTTP_INTERCEPTORS, useClass:AuthInterceptor, multi:true},
+    {provide: HTTP_INTERCEPTORS, useClass:ErrorInterceptor, multi:true}
   ],
   bootstrap: [AppComponent]
 })

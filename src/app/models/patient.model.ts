@@ -1,6 +1,7 @@
 export class Patient {
-    name:string;
+    firstName:string;
+    lastName:string;
     email:string;
     doctor:string;
-    doctor_url:string; // get doctor info url
+    consultationStatus:string;
 }

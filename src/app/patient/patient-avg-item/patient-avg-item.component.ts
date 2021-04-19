@@ -33,7 +33,6 @@ export class PatientAvgItemComponent implements OnInit {
 
 
   onDateChange({start,end}:DateRange) {
-    console.log(start,end);
     if (!start && !end)
       this.period = 'of all time';
     else if (start && end)

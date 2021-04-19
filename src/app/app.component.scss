@@ -1,7 +1,3 @@
-html, body {
-    height: 100%;
-  }
-  
 .home-container {
      height: 100vh;
 }
@@ -13,4 +9,8 @@ html, body {
 
 .light-theme {
     background-color: honeydew;
+}
+
+.outlet {
+    flex-grow : 1;
 }

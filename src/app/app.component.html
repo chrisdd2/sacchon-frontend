@@ -1,6 +1,5 @@
-<div class="home-container" [ngClass]="status ? 'dark-theme' : 'light-theme'">
-    <sacchon-header></sacchon-header>
-    <!-- <br>
+<!-- <div class="home-container" [ngClass]="status ? 'dark-theme' : 'light-theme'">
+    <br>
     <div class="dropdown">
         <button style="float: right; margin: 5px;"
          class="btn btn-secondary dropdown-toggle" 
@@ -12,6 +11,9 @@
             <a class="dropdown-item" (click)="status = true">Dark Theme</a>
         </div>
     <div>
-    <br> -->
-    <router-outlet></router-outlet>
+    <br>
+</div> -->
+<sacchon-header></sacchon-header>
+<div class="outlet">
+<router-outlet></router-outlet>
 </div>

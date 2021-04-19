@@ -1,5 +1,5 @@
+import { PatientsService } from './../../services/patients.service';
 import { DateRange } from '../../shared/date-range/date-range.component';
-import { DataService } from './../../services/data.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Patient } from 'src/app/models/patient.model';
@@ -15,10 +15,10 @@ export class PatientHomeComponent implements OnInit {
   carb_loading:boolean;
 
   constructor(public auth:AuthService,
-              private data:DataService) { }
+              private patientSrv:PatientsService) { }
 
   ngOnInit(): void {
-    this.data.getPatientInfo().subscribe(
+    this.patientSrv.getPatientInfo().subscribe(
       p => this.patient=p,
       er => console.log(er)
     )
@@ -29,12 +29,10 @@ export class PatientHomeComponent implements OnInit {
 
   getAvg(type:string,{start,end}:DateRange,elem:any){
     elem.loading=true;
-    const dstart = start? start.getTime(): 0;
-    const dend = end? end.getTime(): 0;
-    this.data.getPatientAvg(type,dstart,dend)
+    this.patientSrv.getPatientAvg(type,start,end)
     .subscribe(
       avg => {
-        elem.value=avg.avg;
+        elem.value=avg.value;
         elem.loading=false;
       },
       er => console.log(er)

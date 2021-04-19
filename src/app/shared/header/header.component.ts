@@ -17,10 +17,13 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.auth.userSubject.subscribe( u => this.user = u);
+    this.auth.userSubject.subscribe( u =>{
+      console.log(u);
+    this.user = u;});
   }
 
   logOut(){
+    console.log("logged called");
     this.auth.logOut();
     this.router.navigateByUrl('/');
   }
