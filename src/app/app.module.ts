@@ -1,6 +1,5 @@
 import { SharedModule } from './shared/shared.module';
 
-import { FakeBackendInterceptor } from './common/fake-backend.interceptor';
 import { AuthInterceptor } from './common/auth.interceptor';
 import { AuthService } from './services/auth.service';
 import { NgModule } from '@angular/core';
@@ -35,8 +34,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AuthService,
     PatientsService,
     {provide: HTTP_INTERCEPTORS, useClass:ErrorInterceptor, multi:true},
-    {provide: HTTP_INTERCEPTORS, useClass:AuthInterceptor, multi:true},
-    // {provide: HTTP_INTERCEPTORS, useClass:FakeBackendInterceptor,multi:true}
+    {provide: HTTP_INTERCEPTORS, useClass:AuthInterceptor, multi:true}
   ],
   bootstrap: [AppComponent]
 })

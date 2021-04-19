@@ -1,9 +1,10 @@
-import { SignUpFields } from './../../services/auth.service';
+import { ApiError } from './../../models/api-error.model';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, ɵangular_packages_forms_forms_bh } from '@angular/forms';
+import { FormGroup, FormControl} from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { SignUpForm } from 'src/app/common/api-info';
+
 
 @Component({
   selector: 'sacchon-signup',
@@ -13,7 +14,7 @@ import { SignUpForm } from 'src/app/common/api-info';
 export class SignupComponent implements OnInit {
   form:FormGroup;
   account_type:string;
-  error:any;
+  error:ApiError;
 
   constructor(private auth:AuthService,
               private router:Router) { }
@@ -25,7 +26,7 @@ export class SignupComponent implements OnInit {
       email: new FormControl(),
       password: new FormControl(),
       passwordConfirm: new FormControl()
-    })
+    },)
     this.account_type='';
   }
 

@@ -13,6 +13,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatMenuModule} from '@angular/material/menu';
+import { LayoutModule } from '@angular/cdk/layout';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import {MatMenuModule} from '@angular/material/menu';
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
-    MatMenuModule
+    MatMenuModule,
+    LayoutModule
   ],
   exports:[
     DateRangeComponent,

@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.form.controls);
+    this.error = null;
     if (this.form.invalid)
       return;
     this.auth.logIn(this.form.controls.usr.value, this.form.controls.pwd.value)

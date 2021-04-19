@@ -1,3 +1,4 @@
+import { ApiError } from './../models/api-error.model';
 import { Injectable } from '@angular/core';
 import {
   HttpRequest,
@@ -20,7 +21,10 @@ export class ErrorInterceptor implements HttpInterceptor {
         if ( err.status == 432 ){
           // maybe handle referently?
         }
-        return throwError(err.error);
+        // console.log(err.error);
+        if ( err.error?.description )
+          return throwError(err.error);
+        return throwError( new ApiError("Error while connecting to server"));
       }));
   }
 }

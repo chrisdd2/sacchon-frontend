@@ -5,10 +5,15 @@
     </mat-icon>
     <span>Sacchon App</span>
     <div id="tool-button">
-      <button mat-button [matMenuTriggerFor]="menu">
+      
+      <button mat-button [matMenuTriggerFor]="user?menuLogin:menu">
         <mat-icon>menu</mat-icon>
       </button>
-      <mat-menu #menu="matMenu">
+      <mat-menu #menuLogin >
+        <button mat-menu-item routerLink="/auth/settings">Account settings</button>
+        <button mat-menu-item (click) ='logOut();' >Logout</button>
+      </mat-menu>
+      <mat-menu #menu>
         <button mat-menu-item routerLink="/auth/login">Login</button>
         <button mat-menu-item routerLink="/auth/signup">Sign up</button>
       </mat-menu>

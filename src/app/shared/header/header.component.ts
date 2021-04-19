@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HeaderComponent implements OnInit {
   user:User;
+  matLogin:any;
 
   constructor(private auth:AuthService,
               private router:Router) { }
