@@ -9,21 +9,20 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  user:User;
-  matLogin:any;
+  user: User;
+  matLogin: any;
 
-  constructor(private auth:AuthService,
-              private router:Router) { }
+  constructor(private auth: AuthService,
+    private router: Router) { }
 
   ngOnInit(): void {
 
-    this.auth.userSubject.subscribe( u =>{
-      console.log(u);
-    this.user = u;});
+    this.auth.userSubject.subscribe(u => {
+      this.user = u;
+    });
   }
 
-  logOut(){
-    console.log("logged called");
+  logOut() {
     this.auth.logOut();
     this.router.navigateByUrl('/');
   }

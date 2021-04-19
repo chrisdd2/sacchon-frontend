@@ -38,6 +38,10 @@ export class PatientRootComponent implements OnInit , AfterViewInit{
     )
   }
 
+  hasNotification(){
+    return this.patient?.consultationStatus == "UPDATED" || this.patient?.consultationStatus == "NEW"
+  }
+
   ngOnInit(): void {
   }
 

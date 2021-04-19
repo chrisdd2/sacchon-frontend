@@ -66,7 +66,6 @@ export class AuthService {
       );
   }
   public logOut() {
-    console.log("wfei");
     this.userSubject.next(null);
     this.clearUserStorage();
   }

@@ -12,7 +12,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .error {
   padding: 16px;
-  width: 300px;
+  width:100%;
   color: white;
   background-color: red;
+}
+:root{
+  --color-primary : #3f51b5;
 }

@@ -1,0 +1,19 @@
+.overview{
+    display:flex;
+    flex-direction:column;
+}
+.overview-item{
+    display:flex;
+    flex-direction:row;
+}
+.overview-item span{
+    padding-left:5px;
+}
+
+span.leader{
+    font-weight:bold;
+}
+
+mat-card{
+    margin:10px;
+}

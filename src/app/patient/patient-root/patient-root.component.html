@@ -1,70 +1,16 @@
-<!-- <div class="container-fluid">
-    <ul class="nav nav-tabs flex-nowrap text-nowrap">
-        <li class="nav-item">
-            <a routerLink="./home" class="nav-link" routerLinkActive='active'>Home</a>
-        </li>
-        <li class="nav-item">
-            <a routerLink="./medical" class="nav-link" routerLinkActive='active'>Medical Data </a>
-        </li>
-        <li class="nav-item">
-            <a routerLink="./consults" class="nav-link" routerLinkActive='active'> Consultations </a>
-        </li>
-    </ul>
-</div> -->
-<!-- <mat-sidenav-container class="example-container" *ngIf="true">
-    <mat-sidenav #sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')"
-                 (closed)="events.push('close!')">
-      Sidenav content
+<mat-toolbar color="primary" *ngIf='showToolBar'>
+    <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>Menu</span>
+</mat-toolbar>
+<mat-sidenav-container>
+    <mat-sidenav #sidenav>
+        <a mat-stroked-button routerLink="./home">Home</a>
+        <a mat-stroked-button routerLink="./medical">MedicalDataRepo <span *ngIf='hasNotification()' matBadge="!" matBadgePosition="after" matBadgeColor="accent" matBadgeOverlap="false"></span></a>
+        <a mat-stroked-button routerLink="./advice">DoctorAdvice</a>
     </mat-sidenav>
-  
-    <mat-sidenav-content>
-      <p><mat-checkbox [(ngModel)]="opened">sidenav.opened</mat-checkbox></p>
-      <p><button mat-button (click)="sidenav.toggle()">sidenav.toggle()</button></p>
-      <p>Events:</p>
-      <div class="example-events">
-        <div *ngFor="let e of events">{{e}}</div>
-      </div>
-        <router-outlet></router-outlet>
-    </mat-sidenav-content>
-  </mat-sidenav-container> -->
-<!-- <mat-sidenav-container class="example-container" *ngIf="true">
-    <mat-sidenav mode="side" opened>Sidenav content</mat-sidenav>
-    <ul class="nav nav-tabs flex-nowrap text-nowrap">
-        <li class="nav-item">
-            <a routerLink="./home" class="nav-link" routerLinkActive='active'>Home</a>
-        </li>
-        <li class="nav-item">
-            <a routerLink="./medical" class="nav-link" routerLinkActive='active'>Medical Data </a>
-        </li>
-        <li class="nav-item">
-            <a routerLink="./consults" class="nav-link" routerLinkActive='active'> Consultations </a>
-        </li>
-    </ul>
     <mat-sidenav-content>
         <router-outlet></router-outlet>
     </mat-sidenav-content>
-</mat-sidenav-container> -->
-    <mat-toolbar color="primary" *ngIf='showToolBar'>
-        <button mat-icon-button (click)="sidenav.toggle()">
-            <mat-icon>menu</mat-icon>
-        </button>
-        <span>Menu</span>
-    </mat-toolbar>
-    <mat-sidenav-container>
-        <mat-sidenav #sidenav>
-            <div *ngIf='patient'>
-                <p>
-                    {{patient.firstName}}&nbsp;{{patient.lastName}}
-                </p>
-                <h4>Email: {{patient.email}}</h4>
-                <p>Consulting doctor: {{ patient.doctor }} </p>
-            </div>
-                <mat-divider> </mat-divider>
-                <a mat-flat-button routerLink="./home">Home</a>
-                <a mat-flat-button routerLink="./medical">MedicalDataRepo</a>
-                <a mat-flat-button routerLink="./advice">DoctorAdvice</a>
-        </mat-sidenav>
-        <mat-sidenav-content> 
-            <router-outlet></router-outlet>
-        </mat-sidenav-content>
-    </mat-sidenav-container>
+</mat-sidenav-container>

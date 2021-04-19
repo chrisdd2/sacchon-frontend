@@ -14,7 +14,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatMenuModule} from '@angular/material/menu';
 import { LayoutModule } from '@angular/cdk/layout';
-
+import {MatBadgeModule} from '@angular/material/badge';
 
 @NgModule({
   declarations: [
@@ -34,6 +34,7 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatMenuModule,
     MatToolbarModule,
     MatSidenavModule,
+    MatBadgeModule,
     LayoutModule
   ],
   exports:[
@@ -48,6 +49,7 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatMenuModule,
     MatToolbarModule,
     MatSidenavModule,
+    MatBadgeModule,
     LayoutModule
   ]
 })
