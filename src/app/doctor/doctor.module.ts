@@ -5,6 +5,24 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
+// ---------------------------------------
+// ---------------------------------------
+//free patients GET--> http://localhost:9000/api/doctor/consultation/pending
+// ---------------------------------------
+// new consultatuion POST --> http://localhost:9000/api/doctor/consultation
+// basic auth 
+// user: doctor@gmail.com
+// pass: mpes
+// JSON example
+// {
+//   "id":"4",
+//   "text":"Consultation from doctor",
+//   "date":"2021-04-19"
+// }
+// ---------------------------------------
+// patients assigned to the logged in doctor GET --> http://localhost:9000/api/doctor/patients
+// ---------------------------------------
+// ---------------------------------------
 
 export const routes: Routes = [
   {
