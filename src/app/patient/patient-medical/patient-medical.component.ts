@@ -1,3 +1,6 @@
+import { Router } from '@angular/router';
+import { PatientAddCarbComponent } from './../patient-add-carb/patient-add-carb.component';
+import { MatDialog } from '@angular/material/dialog';
 import { RecordCounts } from './../../common/api-info';
 import { PatientsService } from './../../services/patients.service';
 import { Component, OnInit } from '@angular/core';
@@ -25,7 +28,9 @@ export class PatientMedicalComponent implements OnInit {
 
   countLoading: boolean = true;
 
-  constructor(private patientSrv: PatientsService) { }
+  constructor(private patientSrv: PatientsService,
+              private dialog:MatDialog,
+              private router:Router) { }
 
   ngOnInit(): void {
     this.refreshOverview();
@@ -69,5 +74,18 @@ export class PatientMedicalComponent implements OnInit {
     if( event.tab.textLabel == "Overview" )
       this.refreshOverview();
   }
-
+  onAddDialog(){
+    const dialogRef = this.dialog.open(PatientAddCarbComponent, {
+    });
+    dialogRef.afterClosed().subscribe(
+      res => {
+        if( res)
+          this.refreshCarbs();
+        console.log(res);
+      }
+    );
+  }
+  refreshCarbs(){
+    console.log("refreshing carbs!");
+  }
 }

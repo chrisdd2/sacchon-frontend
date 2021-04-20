@@ -1,7 +1,7 @@
 import { createAbstractBuilder } from 'typescript';
 import { environment } from './../../environments/environment.prod';
 
-const prefix = "http://localhost:9000"
+const prefix = "http://192.168.1.105:9000"
 export const ApiRoutes = {
     login: prefix + "/api/auth/login",
     signup: prefix + "/api/auth/signup",
@@ -42,19 +42,18 @@ export type LoginForm = {
 export type GlucoseForm = {
     id?: number;
     glucoseLevel: number;
-    date: string;
+    date: Date;
     time: string;
 }
 export type CarbForm = {
     id?: number;
     carbIntake: number;
-    date: string;
-    time: string;
+    date: Date;
 }
 export type ConsultationForm = {
     id: number;
     text: string;
-    date: string;
+    date: Date;
 }
 export type RecordCounts = {
     carbs:number;

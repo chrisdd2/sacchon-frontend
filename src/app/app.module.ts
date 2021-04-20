@@ -1,3 +1,5 @@
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
 import { SharedModule } from './shared/shared.module';
 
 import { AuthInterceptor } from './common/auth.interceptor';
@@ -32,6 +34,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   providers: [
     AuthService,
+    MatDialog,
+    MatSnackBar,
     {provide: HTTP_INTERCEPTORS, useClass:AuthInterceptor, multi:true},
     {provide: HTTP_INTERCEPTORS, useClass:ErrorInterceptor, multi:true}
   ],

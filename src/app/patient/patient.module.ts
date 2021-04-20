@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { PatientRootComponent } from './patient-root/patient-root.component';
 import { PatientHomeComponent } from './patient-home/patient-home.component';
 import { PatientMedicalComponent } from './patient-medical/patient-medical.component';
+import { PatientAddCarbComponent } from './patient-add-carb/patient-add-carb.component';
 
 
 
@@ -25,7 +26,8 @@ export const routes: Routes = [
   declarations: [
     PatientRootComponent,
     PatientHomeComponent,
-    PatientMedicalComponent
+    PatientMedicalComponent,
+    PatientAddCarbComponent
   ],
   imports: [
     CommonModule,

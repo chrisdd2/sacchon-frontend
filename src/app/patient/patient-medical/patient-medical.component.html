@@ -1,43 +1,60 @@
 <mat-card>
     <mat-card-title> Medical Data </mat-card-title>
     <mat-card-content>
-        <mat-tab-group (selectedTabChange) = "onTabChange($event)">
+        <mat-tab-group (selectedTabChange)="onTabChange($event)">
             <mat-tab label="Overview">
-                <div class="tab-column m-top">
-                    <div class="tab-row">
-                        <span class="bold">Total submissions</span><span *ngIf="!countLoading;else spin">: {{ (carbCount + glucoseCount)}} ( {{carbCount}} carbs, {{glucoseCount}} glucose )</span>
+                <div class="tab-column m-top-2">
+                    <div class="tab-row tab-center">
+                        <span class="bold">Total submissions</span><span *ngIf="!countLoading;else spin">: {{ (carbCount
+                            + glucoseCount)}} ( {{carbCount}} carbs, {{glucoseCount}} glucose )</span>
                     </div>
-                    <div class="tab-row">
+                    <div class="tab-row tab-center m-top">
                         <div class="tab-column">
-                            <div class="mat-h3 p-top-10"><span class="bold">Blood glucose level (Average): </span><span *ngIf="!glucoseAvgLoading;else spin">{{glucoseAverage.toFixed(2)}} mg/dL</span></div>
-                            <div class="mat-h3 p-top-10"><span class="bold">Carb intake (Average): </span><span *ngIf="!carbAvgLoading;else spin">{{carbAverage.toFixed(2)}} gram</span> </div>
+                            <div class="mat-h3 p-top-10"><span class="bold">Carb intake (Average): </span><span
+                                    *ngIf="!carbAvgLoading;else spin">{{carbAverage.toFixed(2)}} gram</span> </div>
                         </div>
-                        <div class="tab-column">
-                            <mat-form-field appearance="standard" matTooltip="Leave empty for all time average" [matTooltipShowDelay]="1000">
+                        <div class="tab-column m-date">
+                            <mat-form-field appearance="standard" matTooltip="Leave empty for all time average"
+                                [matTooltipShowDelay]="1000">
                                 <mat-date-range-input #glucoseRange [rangePicker]="pickerGlucose" color="primary">
                                     <input matStartDate #g1 placeholder="Start date">
-                                    <input matEndDate #g2 placeholder="End date" (dateInput) = "glucoseChange(glucoseRange.value)">
+                                    <input matEndDate #g2 placeholder="End date"
+                                        (dateInput)="glucoseChange(glucoseRange.value)">
                                 </mat-date-range-input>
                                 <mat-datepicker-toggle matSuffix [for]="pickerGlucose"></mat-datepicker-toggle>
                                 <mat-date-range-picker #pickerGlucose></mat-date-range-picker>
-                                <button mat-icon-button matSuffix (click)='pickerGlucose.select(null)'><mat-icon>close</mat-icon></button>
+                                <button mat-icon-button matSuffix (click)='pickerGlucose.select(null)'>
+                                    <mat-icon>close</mat-icon>
+                                </button>
                             </mat-form-field>
-                            <mat-form-field appearance="standard" matTooltip="Leave empty for all time average" [matTooltipShowDelay]="1000">
+                        </div>
+                    </div>
+                    <div class="tab-row tab-center">
+                        <div class="tab-column">
+                            <div class="mat-h3 p-top-10"><span class="bold">Blood glucose level (Average): </span><span
+                                    *ngIf="!glucoseAvgLoading;else spin">{{glucoseAverage.toFixed(2)}} mg/dL</span>
+                            </div>
+                        </div>
+                        <div class="tab-column m-date">
+                            <mat-form-field appearance="standard" matTooltip="Leave empty for all time average"
+                                [matTooltipShowDelay]="1000">
                                 <mat-date-range-input #carbRange [rangePicker]="pickerCarb">
                                     <input matStartDate placeholder="Start date">
-                                    <input matEndDate placeholder="End date" (dateInput) ="carbChange(carbRange.value)">
+                                    <input matEndDate placeholder="End date" (dateInput)="carbChange(carbRange.value)">
                                 </mat-date-range-input>
                                 <mat-datepicker-toggle matSuffix [for]="pickerCarb"></mat-datepicker-toggle>
                                 <mat-date-range-picker #pickerCarb></mat-date-range-picker>
-                                <button mat-icon-button matSuffix (click)='pickerCarb.select(null)'><mat-icon>close</mat-icon></button>
+                                <button mat-icon-button matSuffix (click)='pickerCarb.select(null)'>
+                                    <mat-icon>close</mat-icon>
+                                </button>
                             </mat-form-field>
                         </div>
                     </div>
                 </div>
             </mat-tab>
             <mat-tab class="tab" label="Carb intake">
-                <div class="tab-row m-top tab-row-end">
-                    <button type="button" mat-button color="primary">New</button>
+                <div class="tab-row m-top tab-end">
+                    <button type="button" mat-button color="primary" (click)="onAddDialog()">New</button>
                     <button type="button" mat-button color="accent">Modify</button>
                     <button type="button" mat-button color="warn">Delete</button>
                 </div>

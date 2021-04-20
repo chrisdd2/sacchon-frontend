@@ -19,6 +19,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatTooltip, MatTooltipModule} from '@angular/material/tooltip';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatSnackBarModule} from '@angular/material/snack-bar'
 
 @NgModule({
   declarations: [
@@ -44,11 +46,13 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatNativeDateModule,
     MatTooltipModule,
     MatProgressSpinnerModule,
-
+    MatDialogModule,
+    MatSnackBarModule
   ],
   exports:[
     HomeComponent,
     HeaderComponent,
+    ReactiveFormsModule,
     MatCardModule,
     MatInputModule,
     MatButtonModule,
@@ -64,6 +68,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatNativeDateModule,
     MatTooltipModule,
     MatProgressSpinnerModule,
+    MatDialogModule,
+    MatSnackBarModule
   ]
 })
 export class SharedModule { }

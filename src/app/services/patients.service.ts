@@ -1,5 +1,5 @@
 import { map, retry, shareReplay } from 'rxjs/operators';
-import { ApiRoutes, RecordCounts } from './../common/api-info';
+import { ApiRoutes, RecordCounts, CarbForm } from './../common/api-info';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -52,5 +52,9 @@ export class PatientsService {
   }
   getCarbGlucoseCount(){
     return this.http.get<RecordCounts>(ApiRoutes.patient.count);
+  }
+
+  postCarb(frm:CarbForm){
+    return this.http.post(ApiRoutes.patient.carb,{carbIntake:frm.carbIntake,date: frm.date.toISOString().substr(0,10)});
   }
 }

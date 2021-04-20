@@ -5,24 +5,32 @@ mat-card{
 .tab-row{
     display:flex;
     flex-direction:row;
+    flex-wrap:wrap;
     width:100%;
 }
 .tab-column {
     display:flex;
     flex-direction:column;
-    justify-content: space-evenly;
+    justify-content: center;
+}
+.tab-column mat-form-field {
+    margin-left: 20px;
+    margin-bottom: 20px;
 }
 
 .tab-column div {
-    margin-right: 30px;
     white-space:nowrap;
 }
 .m-top{
+    margin-top: 10px;
+}
+.m-top-2{
     margin-top: 20px;
 }
-.p-top-10{
-    padding-top:12px;
-}
-.tab-row-end{
+.tab-end{
     justify-content: flex-end;
+}
+
+.tab-center{
+    justify-content:center;
 }
