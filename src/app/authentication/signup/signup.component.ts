@@ -39,6 +39,7 @@ export class SignupComponent implements OnInit {
   passwordValidator(fg: FormGroup): ValidationErrors | null {
     const p1 = fg.get("password").value;
     const p2 = fg.get("passwordConfirm").value;
+    console.log(p1,p2);
     return p1 == p2 ? null : { passwordMatch:true};
   }
 

@@ -2,17 +2,18 @@ mat-card{
     margin:10px;
 }
 
-.overview-row{
+.tab-row{
     display:flex;
     flex-direction:row;
+    width:100%;
 }
-.overview-column {
+.tab-column {
     display:flex;
     flex-direction:column;
     justify-content: space-evenly;
 }
 
-.overview-column div {
+.tab-column div {
     margin-right: 30px;
     white-space:nowrap;
 }
@@ -21,4 +22,7 @@ mat-card{
 }
 .p-top-10{
     padding-top:12px;
+}
+.tab-row-end{
+    justify-content: flex-end;
 }

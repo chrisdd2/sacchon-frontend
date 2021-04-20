@@ -3,7 +3,6 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DateRangeComponent } from './date-range/date-range.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { MatCardModule } from '@angular/material/card';
@@ -18,10 +17,11 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {MatTabsModule} from '@angular/material/tabs'
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import {MatTooltip, MatTooltipModule} from '@angular/material/tooltip';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
-    DateRangeComponent,
     HomeComponent,
     HeaderComponent
   ],
@@ -41,10 +41,12 @@ import { MatNativeDateModule } from '@angular/material/core';
     LayoutModule,
     MatTabsModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatTooltipModule,
+    MatProgressSpinnerModule,
+
   ],
   exports:[
-    DateRangeComponent,
     HomeComponent,
     HeaderComponent,
     MatCardModule,
@@ -59,7 +61,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     LayoutModule,
     MatTabsModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatTooltipModule,
+    MatProgressSpinnerModule,
   ]
 })
 export class SharedModule { }

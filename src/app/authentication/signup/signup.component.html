@@ -1,4 +1,4 @@
-<div class="base-container">
+< class="base-container">
     <form *ngIf="account_type=='';else create">
         <mat-card>
             <mat-card-title> Select account type </mat-card-title>
@@ -36,9 +36,9 @@
                     <mat-form-field>
                         <input type="password" formControlName="passwordConfirm" matInput placeholder="Confirm password">
                         <mat-error *ngIf='form.controls.passwordConfirm.errors?.required'>Required</mat-error>
-                        <mat-error *ngIf='form.errors?.passwordMatch && form.controls.passwordConfirm.touched' >Passwords must match</mat-error>
                     </mat-form-field>
                     <div class="buttons">
+                        <mat-error *ngIf='form.errors?.passwordMatch && form.controls.passwordConfirm.touched && form.controls.password.touched' >Passwords must match</mat-error>
                         <button type="submit" mat-flat-button color="primary" >Create account!</button>
                         <button type="button" mat-flat-button (click) ='formClear()'>Clear form</button>
                     </div>

@@ -20,6 +20,8 @@ export class PatientRootComponent implements OnInit , AfterViewInit{
   constructor(private breakpoint:BreakpointObserver,
               private patientSrv:PatientsService) { 
   }
+
+  
   ngAfterViewInit():void{
     this.breakpoint.observe('(max-width: 960px)').subscribe( (res) => {
       if( res.matches ){
@@ -36,6 +38,12 @@ export class PatientRootComponent implements OnInit , AfterViewInit{
       p =>{ this.patient=p},
       er => console.log(er)
     )
+  }
+
+  closeNav(){
+    if( this.sidenav.mode == "over"){
+      this.sidenav.close();
+    }
   }
 
   hasNotification(){
