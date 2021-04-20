@@ -38,7 +38,7 @@
                             <mat-form-field appearance="standard" matTooltip="Leave empty for all time average"
                                 [matTooltipShowDelay]="1000">
                                 <mat-date-range-input #glucoseRange [rangePicker]="pickerGlucose" color="primary">
-                                    <input matStartDate #g1 placeholder="Start date" >
+                                    <input matStartDate #g1 placeholder="Start date">
                                     <input matEndDate #g2 placeholder="End date"
                                         (dateInput)="glucoseChange(glucoseRange.value)">
                                 </mat-date-range-input>
@@ -53,42 +53,16 @@
                 </div>
             </mat-tab>
             <mat-tab class="tab" label="Carb intake">
-                <div class="tab-row m-top tab-center">
-                    <button type="button" mat-button color="primary" (click)="onAddDialog()">New</button>
-                    <button type="button" mat-button color="accent">Modify</button>
-                    <button type="button" mat-button color="warn">Delete</button>
-                </div>
-                <div class="tab-row">
-                    <table mat-table [dataSource]="carbRecords" class="mat-elevation-z2">
-                        <!-- Name Column -->
-                        <ng-container matColumnDef="id">
-                          <th mat-header-cell *matHeaderCellDef> Id</th>
-                          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-                        </ng-container>
-                      
-                        <!-- Weight Column -->
-                        <ng-container matColumnDef="carb">
-                          <th mat-header-cell *matHeaderCellDef>Carb intake</th>
-                          <td mat-cell *matCellDef="let element"> {{element.carb}} </td>
-                        </ng-container>
-                      
-                        <!-- Symbol Column -->
-                        <ng-container matColumnDef="date">
-                          <th mat-header-cell *matHeaderCellDef> Date</th>
-                          <td mat-cell *matCellDef="let element"> {{element.date}} </td>
-                        </ng-container>
-                        <ng-container matColumnDef="actions">
-                          <th mat-header-cell *matHeaderCellDef>Actions</th>
-                          <td mat-cell *matCellDef="let element"> <mat-icon>edit</mat-icon><mat-icon>delete</mat-icon> </td>
-                        </ng-container>
-                      
-                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-                      </table>
-                </div>
+                <sacchon-patient-fieldtable [records]='carbRecord' [definitions]='carbFields'
+                    [hasReached]='fieldsSrv.carbReached' (onLoadMore)='fieldsSrv.getMoreCarbs()' (onAdd)='onCarbAdd()' 
+                    (onEdit)='onCarbUpdate($event)' (onDelete)='onCarbDelete($event)'>
+                </sacchon-patient-fieldtable>
             </mat-tab>
-            <mat-tab label="Blood glucose levels"></mat-tab>
+            <mat-tab label="Blood glucose levels">
+                <sacchon-patient-fieldtable [records]='glucoseRecord' [definitions]='glucoseFields'
+                    [hasReached]='fieldsSrv.glucoseReached' (onLoadMore)='fieldsSrv.getMoreGlucose()' (onDelete)='onGlucoseDelete($event)' (onAdd)='onGlucoseAdd()' (onEdit)='onGlucoseUpdate($event)'>
+                </sacchon-patient-fieldtable>
+            </mat-tab>
         </mat-tab-group>
     </mat-card-content>
 </mat-card>

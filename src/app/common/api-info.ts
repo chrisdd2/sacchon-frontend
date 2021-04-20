@@ -14,7 +14,8 @@ export const ApiRoutes = {
             glucose: prefix + "/api/patient/average/glucose"
         },
         count : prefix + "/api/patient/count",
-        consult: prefix + "/api/patient/consultation"
+        consult: prefix + "/api/patient/consultation",
+        notified: prefix + "/api/patient/notified"
     },
     doctor: {
         info: prefix + "/api/doctor",

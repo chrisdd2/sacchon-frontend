@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { PatientsService } from './../../services/patients.service';
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
@@ -13,7 +14,7 @@ export class PatientRootComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSidenav) sidenav: MatSidenav;
 
   showToolBar: boolean;
-  patient: Patient;
+  patient:Patient;
 
 
   constructor(private breakpoint: BreakpointObserver,
@@ -33,10 +34,6 @@ export class PatientRootComponent implements OnInit, AfterViewInit {
         this.showToolBar = false;
       }
     })
-    this.patientSrv.getPatientInfo().subscribe(
-      p => { this.patient = p;console.log(p)},
-      er => console.log(er)
-    )
   }
 
   closeNav() {
@@ -46,6 +43,8 @@ export class PatientRootComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.patientSrv.patient.subscribe( p => this.patient=p);
+    this.patientSrv.getPatientInfo();
   }
 
 }

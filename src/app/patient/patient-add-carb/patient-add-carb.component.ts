@@ -5,9 +5,10 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
-
-export interface DialogResult {
-  reload:boolean;
+export interface DialogCarbData {
+  id:number;
+  carb:number;
+  date:Date;
 }
 
 @Component({
@@ -18,8 +19,10 @@ export interface DialogResult {
 export class PatientAddCarbComponent implements OnInit {
   form:FormGroup;
   reload:boolean;
+  id:number=-1;
 
   constructor(public dialogRef:MatDialogRef<PatientAddCarbComponent>,
+    @Inject(MAT_DIALOG_DATA) public data:DialogCarbData,
     private patientSrv:PatientsService,
     private snackBar: MatSnackBar ) { }
 
@@ -29,14 +32,26 @@ export class PatientAddCarbComponent implements OnInit {
       carb: new FormControl(null,[Validators.min(0),Validators.required]),
       date: new FormControl(new Date(),[Validators.required])
     });
-  }
-
-  onSubmit(){
-    if( this.form.invalid ){
-      console.log("invalid form");
-      return;
+    if( this.data ){
+      this.id=this.data.id;
+      this.form.controls.carb.setValue(this.data.carb.toPrecision(2));
+      this.form.controls.date.setValue(this.data.date);
     }
-    const frm:CarbForm = { carbIntake: this.form.controls.carb.value, date: this.form.controls.date.value }
+  }
+  
+
+  put(){
+    const frm:CarbForm = { id:this.id,carbIntake: this.form.controls.carb.value, date: this.form.controls.date.value }
+    this.patientSrv.postCarb(frm).subscribe(
+      () => {
+        this.snackBar.open("Succesfully update",null,{duration:2000})
+        this.dialogRef.close(true);
+      },
+      (err) => this.snackBar.open(`Error updating: ${err.description}`,null,{duration:2000})
+    );
+  }
+  post(){
+    const frm:CarbForm = {carbIntake: this.form.controls.carb.value, date: this.form.controls.date.value }
     this.patientSrv.postCarb(frm).subscribe(
       () => {
         this.snackBar.open("Succesfully added",null,{duration:2000})
@@ -44,6 +59,17 @@ export class PatientAddCarbComponent implements OnInit {
       },
       (err) => this.snackBar.open(`Error saving: ${err.description}`,null,{duration:2000})
     );
+  }
+
+  onSubmit(){
+    if( this.form.invalid ){
+      console.log("invalid form");
+      return;
+    }
+    if( this.id > 0 )
+      this.put();
+    else
+      this.post();
   }
 
 

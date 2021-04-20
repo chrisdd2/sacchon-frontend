@@ -1,6 +1,6 @@
 import { map, retry, shareReplay } from 'rxjs/operators';
-import { ApiRoutes, RecordCounts, CarbForm } from './../common/api-info';
-import { Observable, of } from 'rxjs';
+import { ApiRoutes, RecordCounts, CarbForm, GlucoseForm } from './../common/api-info';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Patients } from '../models/patients.model';
@@ -13,10 +13,14 @@ export type AvgItem = { value: number };
   providedIn: 'root'
 })
 export class PatientsService {
-  patient: Patient;
+  patient:BehaviorSubject<Patient>;
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    this.patient = new BehaviorSubject<Patient>(null);
+  }
+
+
 
   getData(): Patients[] {
     return [
@@ -26,12 +30,8 @@ export class PatientsService {
   }
 
   getPatientInfo() {
-    if (this.patient)
-      return of(this.patient);
-    return this.http.get<Patient>(ApiRoutes.patient.info).pipe(
-      map(p => { this.patient = p; console.log(p); return p }),
-      shareReplay(),
-      retry(3),
+    this.http.get<Patient>(ApiRoutes.patient.info).subscribe(
+      p => { this.patient.next(p); }
     );
   }
 
@@ -53,22 +53,46 @@ export class PatientsService {
   getCarbGlucoseCount() {
     return this.http.get<RecordCounts>(ApiRoutes.patient.count);
   }
+  putGlucose(frm: GlucoseForm ){
+    console.log(frm);
+    return this.http.put(ApiRoutes.patient.glucose,{ id:frm.id ,glucoseLevel: frm.glucoseLevel, date : frm.date,time: frm.time});
+  }
+
+  deleteGlucose(id:number){
+    return this.http.delete(ApiRoutes.patient.glucose,{ params: new HttpParams().set("id",id.toString())});
+  }
+  
+  postGlucose(frm: GlucoseForm ){
+    return this.http.post(ApiRoutes.patient.glucose,{ glucoseLevel: frm.glucoseLevel, date : frm.date.toISOString().substr(0,10),time: frm.time});
+  }
+  
+  putCarb(frm: CarbForm) {
+    return this.http.put(ApiRoutes.patient.carb, { id:frm.id,carbIntake: frm.carbIntake, date: frm.date });
+  }
 
   postCarb(frm: CarbForm) {
     return this.http.post(ApiRoutes.patient.carb, { carbIntake: frm.carbIntake, date: frm.date.toISOString().substr(0, 10) });
   }
+  deleteCarb(id:number){
+    return this.http.delete(ApiRoutes.patient.carb,{ params: new HttpParams().set("id",id.toString())});
+  }
+  postNotified(){
+    console.log("post notified");
+    this.http.post(ApiRoutes.patient.notified,"").subscribe();
+  }
   hasNotification(): boolean {
-    if( !this.patient )
+    const patient = this.patient.value;
+    if( !patient )
       return false;
-    if (this.patient.consultationStatus) {
-      return this.patient.consultationStatus == "UPDATED" || this.patient.consultationStatus == "NEW";
+    if (patient.consultationStatus) {
+      return patient.consultationStatus == "UPDATED" || patient.consultationStatus == "NEW";
     }
     return false;
   }
   getNotificationMessage(): string {
-    if( !this.patient )
+    if( !this.patient.value )
       return "Empty status";
-    switch (this.patient.consultationStatus) {
+    switch (this.patient.value.consultationStatus) {
       case "UPDATED":
         return "You consultant updated your latest consultation";
       case "NEW":

@@ -1,0 +1,32 @@
+<div id="container">
+    <div id="loadmore">
+        <button *ngIf='hasAdd' mat-raised-button (click)='onAdd.emit()' color="primary" class="m-right">New record</button>
+        <button mat-raised-button (click)='onLoadMore.emit()' color="accent" [disabled] ='hasReached'>Load more</button>
+    </div>
+    <div id="main">
+        <mat-table [dataSource]="records" class="mat-elevation-z2">
+            <ng-container *ngFor="let def of definitions">
+                <ng-container matColumnDef="{{def.name}}">
+                    <mat-header-cell *matHeaderCellDef>{{def.label}}</mat-header-cell>
+                    <mat-cell *matCellDef="let record">{{def.value(record)}}</mat-cell>
+                </ng-container>
+            </ng-container>
+            <ng-container *ngIf="hasEdit || hasDelete" matColumnDef="actions">
+                <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+                <mat-cell class="duration-cell" *matCellDef="let record">
+                    <button *ngIf='hasEdit' mat-flat-button>
+                        <mat-icon (click)='onEdit.emit(record)'>edit</mat-icon>
+                    </button>
+                    <button *ngIf='hasDelete' mat-flat-button>
+                        <mat-icon (click)='onDelete.emit(record)'>delete</mat-icon>
+                    </button>
+                </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+        </mat-table>
+    </div>
+    <div id="paginator">
+        <mat-paginator #carbPaginator [pageSizeOptions]="[10,25,50]" showFirstLastButtons></mat-paginator>
+    </div>
+</div>

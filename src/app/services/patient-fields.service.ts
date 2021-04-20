@@ -1,5 +1,4 @@
-import { NotLoggedGuard } from './../common/notlogged.guard';
-import { LayoutModule } from '@angular/cdk/layout';
+import { Consultation } from './../models/consultation.model';
 import { CarbRecord, GlucoseRecord } from './../models/patient.fields.model';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
@@ -20,16 +19,23 @@ export class PatientFieldsService {
 
   carb: Field<CarbRecord>
   glucose: Field<GlucoseRecord>
+  consultations: Field<Consultation>
 
   limit = 50;
 
   constructor(private http: HttpClient) {
-    this.carb = { data: [],reached:false,obs : new BehaviorSubject<CarbRecord[]>(null)};
-    this.glucose = { data: [],reached:false,obs : new BehaviorSubject<GlucoseRecord[]>(null)};
+    this.carb = { data: [],reached:false,obs : new BehaviorSubject<CarbRecord[]>([])};
+    this.glucose = { data: [],reached:false,obs : new BehaviorSubject<GlucoseRecord[]>([])};
+    this.consultations = { data: [],reached:false,obs : new BehaviorSubject<Consultation[]>([])};
   }
+
+  get glucoseReached () { return this.glucose.reached;}
+  get carbReached () { return this.carb.reached;}
+  get consultationsReached () { return this.consultations.reached;}
 
   glucoseObs(): BehaviorSubject<GlucoseRecord[]> { return this.glucose.obs; }
   carbObs(): BehaviorSubject<CarbRecord[]> { return this.carb.obs; }
+  consultationObs() : BehaviorSubject<Consultation[]> { return this.consultations.obs;}
 
   getMoreCarbs() {
     this.getMoreField(this.carb,ApiRoutes.patient.carb);
@@ -43,6 +49,13 @@ export class PatientFieldsService {
   refreshGlucose() {
     this.refreshField(this.glucose,ApiRoutes.patient.glucose);
   }
+  getMoreConsultation() {
+    this.getMoreField(this.consultations,ApiRoutes.patient.glucose);
+  }
+  refreshConsultations() {
+    this.refreshField(this.consultations,ApiRoutes.patient.consult);
+  }
+
 
 
   private refreshField<T> ( field:Field<T>,route:string ){
@@ -65,12 +78,13 @@ export class PatientFieldsService {
     this.getData(route,res=>{
       if( !res )
         return;
+      console.log(res);
       if( res.length == 0 )
         field.reached=true;
       else
-        field.data.push(res);
+        field.data.push(...res);
       field.obs.next(field.data);
-    },0);
+    },field.data.length);
   }
 
   private getData(route: string, cb, offset: number) {
@@ -81,4 +95,6 @@ export class PatientFieldsService {
       (err) => console.log(err)
     );
   }
+
+
 }

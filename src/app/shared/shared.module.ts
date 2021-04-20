@@ -1,3 +1,4 @@
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -16,12 +17,12 @@ import { LayoutModule } from '@angular/cdk/layout';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatTabsModule} from '@angular/material/tabs'
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
 import {MatTooltip, MatTooltipModule} from '@angular/material/tooltip';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar'
 import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -44,12 +45,13 @@ import {MatTableModule} from '@angular/material/table';
     LayoutModule,
     MatTabsModule,
     MatDatepickerModule,
-    MatNativeDateModule,
     MatTooltipModule,
     MatProgressSpinnerModule,
     MatDialogModule,
     MatSnackBarModule,
-    MatTableModule
+    MatTableModule,
+    MatPaginatorModule,
+    MatNativeDateModule,
   ],
   exports:[
     HomeComponent,
@@ -72,7 +74,8 @@ import {MatTableModule} from '@angular/material/table';
     MatProgressSpinnerModule,
     MatDialogModule,
     MatSnackBarModule,
-    MatTableModule
+    MatTableModule,
+    MatPaginatorModule,
   ]
 })
 export class SharedModule { }

@@ -12,7 +12,7 @@
                 <p> <span class="leader">Consultant:</span><span>{{ patient?.doctor?patient.doctor:'None' }}</span></p>
             </div>
             <div class="overview-item">
-                <p> <span class="leader">Email:</span><a href="mailto:{{patient?.email}}">{{ patient?.email }}</a></p>
+                <p> <span class="leader">Email:</span><a href="mailto:{{patient?.email}}">&nbsp;{{ patient?.email }}</a></p>
             </div>
             <div *ngIf='patientSrv.hasNotification()' class="overview-item warn">
                 <p> <span class="leader">{{ patientSrv.getNotificationMessage()}}</span></p>
@@ -25,10 +25,10 @@
     <mat-card-content>
         <div class="overview">
             <div class="overview-item">
-                <a routerLink="/patient/carb/add">Submit carb intake record</a>
+                <a routerLink="." (click) = "addCarb()">Submit carb intake record</a>
             </div>
             <div class="overview-item">
-                <a routerLink="/patient/glucose/add">Submit glucode level measurement</a>
+                <a routerLink="." (click) ="addGlucose()">Submit glucode level measurement</a>
             </div>
             <div class="overview-item">
                 <a routerLink="/patient/consultation">See latest consultation</a>
