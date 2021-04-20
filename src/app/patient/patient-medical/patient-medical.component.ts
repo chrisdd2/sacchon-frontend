@@ -1,3 +1,4 @@
+import { CarbRecord, GlucoseRecord } from './../../models/patient.fields.model';
 import { PatientFieldsService } from './../../services/patient-fields.service';
 import { Router } from '@angular/router';
 import { PatientAddCarbComponent } from './../patient-add-carb/patient-add-carb.component';
@@ -7,26 +8,6 @@ import { PatientsService } from './../../services/patients.service';
 import { Component, OnInit } from '@angular/core';
 import { debounceTime, delay } from 'rxjs/operators';
 import { MatTabChangeEvent } from '@angular/material/tabs';
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
 
 
 @Component({
@@ -36,26 +17,31 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class PatientMedicalComponent implements OnInit {
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['id', 'carb', 'date', 'actions'];
 
   carbAvgLoading: boolean = true;
   carbAverage: number;
   carbCount: number;
+  carbRecords: CarbRecord[]
 
   glucoseAvgLoading: boolean = true;
   glucoseAverage: number;
   glucoseCount: number;
+  glucoseRecords: GlucoseRecord[];
 
   countLoading: boolean = true;
 
   constructor(private patientSrv: PatientsService,
               private dialog:MatDialog,
               private router:Router,
-              private fieldsSrv: PatientFieldsService) { }
-
+              private fieldsSrv: PatientFieldsService) { 
+              }
   ngOnInit(): void {
+    this.carbRecords=[];
+    this.glucoseRecords=[];
     this.refreshOverview();
+    this.fieldsSrv.glucose.obs.subscribe( d => this.glucoseRecords = d)
+    this.fieldsSrv.carb.obs.subscribe( d => this.carbRecords = d);
   }
 
   refreshOverview() {
@@ -93,8 +79,19 @@ export class PatientMedicalComponent implements OnInit {
   }
 
   onTabChange( event:MatTabChangeEvent){
-    if( event.tab.textLabel == "Overview" )
-      this.refreshOverview();
+    switch( event.tab.textLabel.toLowerCase() ){
+      case "overview" : 
+        this.refreshOverview();
+        break;
+      case "carb intake":
+        this.refreshCarbs();
+        break;
+      case "blood glucose levels":
+        this.refreshGlucose();
+        break;
+      default:
+        console.log("this should not happen " + event.tab.textLabel);
+    }
   }
   onAddDialog(){
     const dialogRef = this.dialog.open(PatientAddCarbComponent, {
@@ -109,5 +106,10 @@ export class PatientMedicalComponent implements OnInit {
   }
   refreshCarbs(){
     console.log("refreshing carbs!");
+    this.fieldsSrv.refreshCarbs();
+  }
+  refreshGlucose(){
+    console.log("refreshing glucose!");
+    this.fieldsSrv.refreshGlucose();
   }
 }
