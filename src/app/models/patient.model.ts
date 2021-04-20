@@ -4,4 +4,5 @@ export class Patient {
     email:string;
     doctor:string;
     consultationStatus:string;
+
 }

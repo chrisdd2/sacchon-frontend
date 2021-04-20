@@ -16,14 +16,13 @@
                         <div class="tab-column m-date">
                             <mat-form-field appearance="standard" matTooltip="Leave empty for all time average"
                                 [matTooltipShowDelay]="1000">
-                                <mat-date-range-input #glucoseRange [rangePicker]="pickerGlucose" color="primary">
-                                    <input matStartDate #g1 placeholder="Start date">
-                                    <input matEndDate #g2 placeholder="End date"
-                                        (dateInput)="glucoseChange(glucoseRange.value)">
+                                <mat-date-range-input #carbRange [rangePicker]="pickerCarb">
+                                    <input matStartDate placeholder="Start date">
+                                    <input matEndDate placeholder="End date" (dateInput)="carbChange(carbRange.value)">
                                 </mat-date-range-input>
-                                <mat-datepicker-toggle matSuffix [for]="pickerGlucose"></mat-datepicker-toggle>
-                                <mat-date-range-picker #pickerGlucose></mat-date-range-picker>
-                                <button mat-icon-button matSuffix (click)='pickerGlucose.select(null)'>
+                                <mat-datepicker-toggle matSuffix [for]="pickerCarb"></mat-datepicker-toggle>
+                                <mat-date-range-picker #pickerCarb></mat-date-range-picker>
+                                <button mat-icon-button matSuffix (click)='pickerCarb.select(null)'>
                                     <mat-icon>close</mat-icon>
                                 </button>
                             </mat-form-field>
@@ -38,13 +37,14 @@
                         <div class="tab-column m-date">
                             <mat-form-field appearance="standard" matTooltip="Leave empty for all time average"
                                 [matTooltipShowDelay]="1000">
-                                <mat-date-range-input #carbRange [rangePicker]="pickerCarb">
-                                    <input matStartDate placeholder="Start date">
-                                    <input matEndDate placeholder="End date" (dateInput)="carbChange(carbRange.value)">
+                                <mat-date-range-input #glucoseRange [rangePicker]="pickerGlucose" color="primary">
+                                    <input matStartDate #g1 placeholder="Start date" >
+                                    <input matEndDate #g2 placeholder="End date"
+                                        (dateInput)="glucoseChange(glucoseRange.value)">
                                 </mat-date-range-input>
-                                <mat-datepicker-toggle matSuffix [for]="pickerCarb"></mat-datepicker-toggle>
-                                <mat-date-range-picker #pickerCarb></mat-date-range-picker>
-                                <button mat-icon-button matSuffix (click)='pickerCarb.select(null)'>
+                                <mat-datepicker-toggle matSuffix [for]="pickerGlucose"></mat-datepicker-toggle>
+                                <mat-date-range-picker #pickerGlucose></mat-date-range-picker>
+                                <button mat-icon-button matSuffix (click)='pickerGlucose.select(null)'>
                                     <mat-icon>close</mat-icon>
                                 </button>
                             </mat-form-field>
@@ -57,6 +57,35 @@
                     <button type="button" mat-button color="primary" (click)="onAddDialog()">New</button>
                     <button type="button" mat-button color="accent">Modify</button>
                     <button type="button" mat-button color="warn">Delete</button>
+                </div>
+                <div class="tab-row">
+                    <table mat-table [dataSource]="dataSource" class="mat-elevation-z2">
+
+                        <ng-container matColumnDef="checkbox">
+                          <th mat-header-cell *matHeaderCellDef> </th>
+                          <td mat-cell *matCellDef="let element"> {{element.checkbox}} </td>
+                        </ng-container>
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="id">
+                          <th mat-header-cell *matHeaderCellDef> No. </th>
+                          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                        </ng-container>
+                      
+                        <!-- Weight Column -->
+                        <ng-container matColumnDef="Carb intake">
+                          <th mat-header-cell *matHeaderCellDef></th>
+                          <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+                        </ng-container>
+                      
+                        <!-- Symbol Column -->
+                        <ng-container matColumnDef="Date">
+                          <th mat-header-cell *matHeaderCellDef> Date</th>
+                          <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+                        </ng-container>
+                      
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                      </table>
                 </div>
             </mat-tab>
             <mat-tab label="Blood glucose levels"></mat-tab>

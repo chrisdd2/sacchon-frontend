@@ -14,6 +14,9 @@
             <div class="overview-item">
                 <p> <span class="leader">Email:</span><a href="mailto:{{patient?.email}}">{{ patient?.email }}</a></p>
             </div>
+            <div *ngIf='patientSrv.hasNotification()' class="overview-item warn">
+                <p> <span class="leader">{{ patientSrv.getNotificationMessage()}}</span></p>
+            </div>
         </div>
     </mat-card-content>
 </mat-card>

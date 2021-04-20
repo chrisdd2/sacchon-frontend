@@ -44,17 +44,37 @@ export class PatientsService {
     else
       console.log("wrong call to avg");
     let params = new HttpParams();
-    if ( start )
-        params = params.append("start",start.toISOString().substr(0, 10));
-    if ( end )
-        params = params.append("end",end.toISOString().substr(0, 10));
-    return this.http.get<AvgItem>(route, {params});
+    if (start)
+      params = params.append("start", start.toISOString().substr(0, 10));
+    if (end)
+      params = params.append("end", end.toISOString().substr(0, 10));
+    return this.http.get<AvgItem>(route, { params });
   }
-  getCarbGlucoseCount(){
+  getCarbGlucoseCount() {
     return this.http.get<RecordCounts>(ApiRoutes.patient.count);
   }
 
-  postCarb(frm:CarbForm){
-    return this.http.post(ApiRoutes.patient.carb,{carbIntake:frm.carbIntake,date: frm.date.toISOString().substr(0,10)});
+  postCarb(frm: CarbForm) {
+    return this.http.post(ApiRoutes.patient.carb, { carbIntake: frm.carbIntake, date: frm.date.toISOString().substr(0, 10) });
+  }
+  hasNotification(): boolean {
+    if( !this.patient )
+      return false;
+    if (this.patient.consultationStatus) {
+      return this.patient.consultationStatus == "UPDATED" || this.patient.consultationStatus == "NEW";
+    }
+    return false;
+  }
+  getNotificationMessage(): string {
+    if( !this.patient )
+      return "Empty status";
+    switch (this.patient.consultationStatus) {
+      case "UPDATED":
+        return "You consultant updated your latest consultation";
+      case "NEW":
+        return "You have a new consultation!";
+      default:
+        return "No status from database ( inform an admin )";
+    }
   }
 }

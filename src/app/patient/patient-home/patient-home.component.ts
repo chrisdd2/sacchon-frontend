@@ -13,7 +13,7 @@ export class PatientHomeComponent implements OnInit {
   patient:Patient;
 
   constructor(public auth:AuthService,
-              private patientSrv:PatientsService) { }
+              public patientSrv:PatientsService) { }
 
   ngOnInit(): void {
     this.patientSrv.getPatientInfo().subscribe(
