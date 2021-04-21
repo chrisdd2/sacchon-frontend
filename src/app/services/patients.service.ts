@@ -5,6 +5,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Patients } from '../models/patients.model';
 import { Patient } from '../models/patient.model';
+import { getDateString } from '../shared/util';
 
 
 export type AvgItem = { value: number };
@@ -54,7 +55,7 @@ export class PatientsService {
     return this.http.get<RecordCounts>(ApiRoutes.patient.count);
   }
   putGlucose(frm: GlucoseForm ){
-    console.log(frm);
+    console.log(frm.date);
     return this.http.put(ApiRoutes.patient.glucose,{ id:frm.id ,glucoseLevel: frm.glucoseLevel, date : frm.date,time: frm.time});
   }
 
@@ -63,15 +64,16 @@ export class PatientsService {
   }
   
   postGlucose(frm: GlucoseForm ){
-    return this.http.post(ApiRoutes.patient.glucose,{ glucoseLevel: frm.glucoseLevel, date : frm.date.toISOString().substr(0,10),time: frm.time});
+    return this.http.post(ApiRoutes.patient.glucose,{ glucoseLevel: frm.glucoseLevel, date : getDateString(frm.date),time: frm.time});
   }
   
   putCarb(frm: CarbForm) {
+    console.log(frm.date);
     return this.http.put(ApiRoutes.patient.carb, { id:frm.id,carbIntake: frm.carbIntake, date: frm.date });
   }
 
   postCarb(frm: CarbForm) {
-    return this.http.post(ApiRoutes.patient.carb, { carbIntake: frm.carbIntake, date: frm.date.toISOString().substr(0, 10) });
+    return this.http.post(ApiRoutes.patient.carb, { carbIntake: frm.carbIntake, date: getDateString(frm.date) });
   }
   deleteCarb(id:number){
     return this.http.delete(ApiRoutes.patient.carb,{ params: new HttpParams().set("id",id.toString())});

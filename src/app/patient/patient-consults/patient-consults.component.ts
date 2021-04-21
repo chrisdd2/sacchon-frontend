@@ -16,7 +16,8 @@ export class PatientConsultsComponent implements OnInit,OnDestroy {
   fields:FieldTableDefinitions[]=[
     // { name: "id",value:v=>v.id,label:"Id"},
     { name: "text",value:v=>v.consultationText,label:"Consultation"},
-    { name: "date",value:v=>v.date,label:"Date"}
+    { name: "date",value:v=>v.date,label:"Date"},
+    { name: "expires",value:v=>v.expirationDate,label:"Valid until"}
   ];
   records: MatTableDataSource<Consultation>;
   obs:Subscription;

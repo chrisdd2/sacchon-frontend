@@ -16,6 +16,7 @@ import { DialogGlucoseData, PatientAddGlucoseComponent } from '../patient-add-gl
 import { Subscription } from 'rxjs';
 
 
+
 @Component({
   selector: 'sacchon-patient-medical',
   templateUrl: './patient-medical.component.html',
@@ -27,12 +28,12 @@ export class PatientMedicalComponent implements OnInit,OnDestroy {
 
   carbFields:FieldTableDefinitions[]=[
     // { name: "id",value:v=>v.id,label:"Id"},
-    { name: "carb",value:v=>v.carb.toFixed(2),label:"Carb intake"},
+    { name: "carb",value:v=>v.carb.toFixed(2),label:"Carb intake ( in grams )"},
     { name: "date",value:v=>v.date,label:"Date"}
   ];
   glucoseFields:FieldTableDefinitions[]=[
     // { name: "id",value:v => v.id,label:"Id"},
-    { name: "glucose",value:v => v.glucose.toFixed(2),label:"Glucose levels"},
+    { name: "glucose",value:v => v.glucose.toFixed(2),label:"Glucose levels ( ing mg/dL )"},
     { name: "date",value:v=> v.date,label:"Date"},
     { name: "Time",value:v => v.time,label:"Time"}
   ];

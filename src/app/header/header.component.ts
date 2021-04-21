@@ -16,7 +16,8 @@ export class HeaderComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-
+    if(! this.auth.isLoggedIn())
+      this.router.navigateByUrl("/");
     this.auth.userSubject.subscribe(u => {
       this.user = u;
     });

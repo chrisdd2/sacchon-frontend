@@ -1,7 +1,8 @@
+import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './header/header.component';
 import { PatientFieldsService } from './services/patient-fields.service';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBar,  } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
-import { SharedModule } from './shared/shared.module';
 
 import { AuthInterceptor } from './common/auth.interceptor';
 import { AuthService } from './services/auth.service';
@@ -14,22 +15,25 @@ import { AppComponent } from './app.component';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { ErrorInterceptor } from './common/error.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from './shared/shared.module';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AuthenticationModule,
     HttpClientModule,
-    SharedModule,
     ReactiveFormsModule,
     NgbModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    SharedModule
   ],
   providers: [
     AuthService,

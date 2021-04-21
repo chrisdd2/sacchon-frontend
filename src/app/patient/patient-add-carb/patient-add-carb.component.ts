@@ -41,6 +41,7 @@ export class PatientAddCarbComponent implements OnInit {
   
 
   put(){
+    console.log("date  "+ this.form.controls.date.value)
     const frm:CarbForm = { id:this.id,carbIntake: this.form.controls.carb.value, date: this.form.controls.date.value }
     this.patientSrv.postCarb(frm).subscribe(
       () => {
@@ -51,6 +52,8 @@ export class PatientAddCarbComponent implements OnInit {
     );
   }
   post(){
+
+    console.log("date  "+ this.form.controls.date.value)
     const frm:CarbForm = {carbIntake: this.form.controls.carb.value, date: this.form.controls.date.value }
     this.patientSrv.postCarb(frm).subscribe(
       () => {
