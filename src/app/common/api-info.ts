@@ -25,7 +25,8 @@ export const ApiRoutes = {
             glucose: prefix + "/api/doctor/patient/glucose"
         },
         consultation: prefix + "/api/doctor/consultation",
-        pending: prefix + "/api/consultation/pending",
+        consultationlist: prefix + "/api/doctor/consultation/list",
+        pending: prefix + "/api/doctor/consultation/pending",
     },
     reporter:{
         info: prefix + "/api/reporter/",

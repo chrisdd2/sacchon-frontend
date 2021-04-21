@@ -4,7 +4,7 @@ import { GlucoseRecord } from './../../models/patient.fields.model';
 import { getDateString,resetFieldWithDates } from './../../shared/util';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ReporterService, ReporterPatient } from './../../services/reporter.service';
+import { ReporterService, PatientItem } from './../../services/reporter.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ApiError } from 'src/app/models/api-error.model';
@@ -22,7 +22,7 @@ import { FieldSupplier } from 'src/app/services/field-supplier';
 export class ReporterMedidataComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
-  curPatient: ReporterPatient;j
+  curPatient: PatientItem;j
 
   carb: FieldSupplier<CarbRecord>;
   glucose: FieldSupplier<GlucoseRecord>;
@@ -70,12 +70,12 @@ export class ReporterMedidataComponent implements OnInit, OnDestroy {
       return;
     this.clearPatient();
     this.reporterSrv.searchPatient(this.form.controls.search.value).subscribe(
-      (p: ReporterPatient) => this.setupPatient(p),
+      (p: PatientItem) => this.setupPatient(p),
       (er: ApiError) => this.snackBar.open(er.description, "Close", { duration: 2000, verticalPosition: "top" })
     )
   }
 
-  setupPatient(p:ReporterPatient) {
+  setupPatient(p:PatientItem) {
     this.curPatient=p;
     resetFieldWithDates(this.carb,{"id":this.curPatient.id.toString()},{});
     resetFieldWithDates(this.glucose,{"id":this.curPatient.id.toString()},{});

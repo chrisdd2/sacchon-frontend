@@ -22,11 +22,13 @@ export class FieldTableComponent implements OnInit,AfterViewInit {
   @Output() onLoadMore: EventEmitter<void> = new EventEmitter();
   @Output() onDelete: EventEmitter<any> = new EventEmitter();
   @Output() onEdit: EventEmitter<any> = new EventEmitter();
+  @Output() onView: EventEmitter<any> = new EventEmitter();
   @Input() hasAdd:boolean=true;
   @Input() hasDelete:boolean=true;
   @Input() hasEdit:boolean=true;
   @Input() hasReached:boolean;
   @Input() hasActions:boolean=true;
+  @Input() hasView:boolean=false;
   @Input() definitions:FieldTableDefinitions[];
   @Input() records : MatTableDataSource<any>;
 
@@ -41,6 +43,7 @@ export class FieldTableComponent implements OnInit,AfterViewInit {
     this.displayedColumns=[];
     for( let def of this.definitions )
       this.displayedColumns.push(def.name);
+      console.log(this.hasActions);
     if( this.hasActions)
       this.displayedColumns.push("actions");
   }

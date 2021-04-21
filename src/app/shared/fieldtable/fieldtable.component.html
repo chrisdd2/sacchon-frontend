@@ -11,9 +11,12 @@
                     <mat-cell *matCellDef="let record">{{def.value(record)}}</mat-cell>
                 </ng-container>
             </ng-container>
-            <ng-container *ngIf="hasEdit || hasDelete" matColumnDef="actions">
-                <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+            <ng-container *ngIf="hasActions" matColumnDef="actions">
+                <th><mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
                 <mat-cell class="duration-cell" *matCellDef="let record">
+                    <button *ngIf='hasView' mat-flat-button>
+                        <mat-icon (click)='onView.emit(record)'>pageview</mat-icon>
+                    </button>
                     <button *ngIf='hasEdit' mat-flat-button>
                         <mat-icon (click)='onEdit.emit(record)'>edit</mat-icon>
                     </button>

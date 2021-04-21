@@ -1,7 +1,7 @@
 import { ReporterService } from './../../services/reporter.service';
 import { Component, OnInit } from '@angular/core';
 import { Reporter } from 'src/app/models/reporter.model';
-import { ReporterPatient } from 'src/app/services/reporter.service';
+import { PatientItem } from 'src/app/services/reporter.service';
 
 @Component({
   selector: 'sacchon-reporter-home',

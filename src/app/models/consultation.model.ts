@@ -3,4 +3,5 @@ export interface Consultation{
     consultationText:string;
     date:Date;
     expirationDate:Date;
+    patientName?:string;
 }

@@ -6,7 +6,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { DoctorRootComponent } from './doctor-root/doctor-root.component';
 import { DoctorHomeComponent } from './doctor-home/doctor-home.component';
 import { DoctorMedicalComponent } from './doctor-medical/doctor-medical.component';
-import { DoctorConsultComponent } from './doctor-consult/doctor-consult.component';
+import { PatientViewComponent } from './patient-view/patient-view.component';
+import { DoctorConsultAddComponent } from './doctor-consult-add/doctor-consult-add.component';
 
 
 export const routes: Routes = [
@@ -16,8 +17,7 @@ export const routes: Routes = [
     children:[
       {path:'', redirectTo:'home', pathMatch:'prefix'},
       {path: 'home', component:DoctorHomeComponent},
-      {path: 'medical', component:DoctorMedicalComponent},
-      {path: 'consults', component:DoctorConsultComponent}
+      {path: 'doctoradvice', component:DoctorMedicalComponent},
     ]
   }
 ];
@@ -27,7 +27,8 @@ export const routes: Routes = [
     DoctorRootComponent,
     DoctorHomeComponent,
     DoctorMedicalComponent,
-    DoctorConsultComponent
+    PatientViewComponent,
+    DoctorConsultAddComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,18 @@
+<form [formGroup] ='form' novalidate>
+    <mat-form-field>
+        <mat-label>Consultation text</mat-label>
+        <input matInput [formControl] = 'form.controls.text' type="text" placerholder="Consultation text">
+        <mat-error *ngIf='form.controls.text.errors?.required && form.controls.text.touched'>Required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Date</mat-label>
+        <input matInput [formControl] = 'form.controls.date' [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf='form.controls.date.errors?.required && form.controls.date.touched'>Required</mat-error>
+    </mat-form-field>
+    <div mat-dialog-actions class="button">
+        <button type="submit" mat-flat-button color="primary"  (click)="onSubmit()">Submit</button>
+        <button type="button" mat-flat-button color="standard" [mat-dialog-close]="false" >Cancel</button>
+    </div>
+</form>

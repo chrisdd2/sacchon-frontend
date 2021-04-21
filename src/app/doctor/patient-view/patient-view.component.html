@@ -1,0 +1,31 @@
+<h2 mat-dialog-title>Patient View</h2>
+<mat-dialog-content>
+    <div class="patient-info">
+        <span> <span class="bold">Patient</span>: {{ data?.patient.fullName }} ( <a
+                href="mailto:{{data?.patient.email}}">{{data?.patient.email}}</a> )</span>
+    </div>
+    <mat-tab-group (selectedTabChange)='onTabChange($event)'>
+        <mat-tab label="Carb Records">
+            <sacchon-fieldtable [hasActions]='false' [definitions]='carbFields' [records]='carbRecords' [hasAdd]='false'
+                (onLoadMore)='this.carb.getMore()' [hasReached]='this.carb.reached'>
+            </sacchon-fieldtable>
+        </mat-tab>
+        <mat-tab label="Glucose Levels">
+            <sacchon-fieldtable [hasActions]='false' [definitions]='glucoseFields' [records]='glucoseRecords'
+                [hasAdd]='false' (onLoadMore)='this.glucose.getMore()' [hasReached]='this.glucose.reached'>
+            </sacchon-fieldtable>
+        </mat-tab>
+        <mat-tab label="Consultations">
+            <sacchon-fieldtable [hasActions]='false' [definitions]='consultFields' [records]='consultRecords'
+                [hasAdd]='false' (onLoadMore)='this.consult.getMore()' [hasReached]='this.consult.reached'>
+            </sacchon-fieldtable>
+        </mat-tab>
+    </mat-tab-group>
+    <div class="button">
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button *ngIf='data?.consultation' mat-raised-button color="primary" [mat-dialog-close]='true'>Add
+        consultation</button>
+    <button mat-raised-button color="warn" [mat-dialog-close]='false'>Cancel</button>
+</mat-dialog-actions>

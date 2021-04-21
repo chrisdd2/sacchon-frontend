@@ -4,12 +4,12 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Reporter } from '../models/reporter.model';
 
-export interface ReporterPatient{
+export interface PatientItem{
   id:number;
   fullName:string;
   email:string;
 }
-export interface ReporterDoctor{
+export interface DoctorItem{
   id:number;
   fullName:string;
   email:string;
@@ -32,11 +32,11 @@ export class ReporterService {
   }
 
   searchPatient(email:string){
-    return this.http.get<ReporterPatient>(ApiRoutes.reporter.patient.search, { params: new HttpParams().append("email",email)});
+    return this.http.get<PatientItem>(ApiRoutes.reporter.patient.search, { params: new HttpParams().append("email",email)});
   }
 
   searchDoctor(email:string){
-    return this.http.get<ReporterDoctor>(ApiRoutes.reporter.doctor.search, { params: new HttpParams().append("email",email)});
+    return this.http.get<DoctorItem>(ApiRoutes.reporter.doctor.search, { params: new HttpParams().append("email",email)});
   }
 
 

@@ -1,1 +1,25 @@
-<p>doctor-medical works!</p>
+<mat-card>
+    <mat-card-title>Doctor Advice</mat-card-title>
+    <mat-card-content>
+        <mat-tab-group (selectedTabChange)='onTabChange($event)'>
+            <mat-tab label="Consulted Patients">
+                <sacchon-fieldtable [records]='consultedRecords' [definitions]='patientFields' 
+                    [hasAdd]='false' [hasEdit] = 'false' [hasView]='true' [hasDelete] ='false' (onLoadMore)='consulted.getMore()'
+                    [hasReached]='consulted.reached' (onView)='onConsultedView($event)'>
+                </sacchon-fieldtable>
+            </mat-tab>
+            <mat-tab label="Pending consultation patients">
+                <sacchon-fieldtable [records]='pendingRecords' [definitions]='patientFields'
+                    [hasAdd]='false' [hasEdit]='false' [hasDelete]='false' [hasView]='true' (onLoadMore)='pending.getMore()'
+                    [hasReached]='pending.reached' (onView)='onPendingView($event)'>
+                </sacchon-fieldtable>
+            </mat-tab>
+            <mat-tab label="Consultations">
+                <sacchon-fieldtable [records]='consultsRecords' [definitions]='consultsFields'
+                    [hasAdd]='false' [hasEdit]='true' [hasDelete]='false' [hasView]='false' (onLoadMore)='consults.getMore()'
+                    [hasReached]='consults.reached' (onEdit)='onConsultEdit($event)'>
+                </sacchon-fieldtable>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-card-content>
+</mat-card>

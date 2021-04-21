@@ -4,7 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { FieldSupplier } from './../../services/field-supplier';
-import { ReporterDoctor, ReporterService } from './../../services/reporter.service';
+import { DoctorItem, ReporterService } from './../../services/reporter.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Consultation } from 'src/app/models/consultation.model';
@@ -23,7 +23,7 @@ export interface ConsultationReporter extends Consultation{
 })
 export class ReporterDoctoradviceComponent implements OnInit {
   form:FormGroup;
-  curDoctor:ReporterDoctor;
+  curDoctor:DoctorItem;
 
   supplier: FieldSupplier<ConsultationReporter>;
   records: MatTableDataSource<ConsultationReporter>
@@ -57,11 +57,11 @@ export class ReporterDoctoradviceComponent implements OnInit {
       return;
     this.clearDoctor();
     this.reporterSrv.searchDoctor(this.form.controls.search.value).subscribe(
-      (d: ReporterDoctor) => this.setupDoctor(d),
+      (d: DoctorItem) => this.setupDoctor(d),
       (er: ApiError) => this.snackBar.open(er.description, "Close", { duration: 2000, verticalPosition: "top" })
     )
   }
-  setupDoctor(d:ReporterDoctor){
+  setupDoctor(d:DoctorItem){
     this.curDoctor = d;
     resetFieldWithDates(this.supplier,{"id":this.curDoctor.id.toString()},{});
     this.supplier.refresh();
