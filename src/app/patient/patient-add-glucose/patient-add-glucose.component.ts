@@ -48,20 +48,20 @@ export class PatientAddGlucoseComponent implements OnInit {
     const frm:GlucoseForm = { id:this.id,glucoseLevel: this.form.controls.glucose.value, date: this.form.controls.date.value, time: this.form.controls.time.value +":00" }
     this.patientSrv.putGlucose(frm).subscribe(
       () => {
-        this.snackBar.open("Succesfully update",null,{duration:2000})
+        this.snackBar.open("Succesfully update","Close",{duration:2000})
         this.dialogRef.close(true);
       },
-      (err) => this.snackBar.open(`Error updating: ${err.description}`,null,{duration:2000})
+      (err) => this.snackBar.open(`Error updating: ${err.description}`,"Close",{duration:2000})
     );
   }
   post(){
     const frm:GlucoseForm = {glucoseLevel: this.form.controls.glucose.value, date: this.form.controls.date.value, time: this.form.controls.time.value+":00" }
     this.patientSrv.postGlucose(frm).subscribe(
       () => {
-        this.snackBar.open("Succesfully added",null,{duration:2000})
+        this.snackBar.open("Succesfully added","Close",{duration:2000})
         this.dialogRef.close(true);
       },
-      (err) => this.snackBar.open(`Error saving: ${err.description}`,null,{duration:2000})
+      (err) => this.snackBar.open(`Error saving: ${err.description}`,"Close",{duration:2000})
     );
   }
 

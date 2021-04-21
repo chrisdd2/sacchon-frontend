@@ -1,7 +1,8 @@
 <mat-card>
     <mat-card-title>Consultations</mat-card-title>
     <mat-card-content>
-        <sacchon-fieldtable [hasActions]='false' [definitions]='fields' [records] ='records' [hasAdd]='false' (onLoadMore) ='onLoadMore()' [hasReached] ='hasReached()'>
+        <sacchon-fieldtable [hasActions]='false' [definitions]='fields' [records]='records' [hasAdd]='false'
+            (onLoadMore)='this.fieldSrv.consultations.getMore()' [hasReached]='this.fieldSrv.consultations.reached'>
         </sacchon-fieldtable>
     </mat-card-content>
 </mat-card>

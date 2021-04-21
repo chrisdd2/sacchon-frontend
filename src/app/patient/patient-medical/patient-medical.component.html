@@ -54,13 +54,13 @@
             </mat-tab>
             <mat-tab class="tab" label="Carb intake">
                 <sacchon-fieldtable [records]='carbRecord' [definitions]='carbFields'
-                    [hasReached]='fieldsSrv.carbReached' (onLoadMore)='fieldsSrv.getMoreCarbs()' (onAdd)='onCarbAdd()' 
+                    [hasReached]='fieldsSrv.carb.reached' (onLoadMore)='fieldsSrv.carb.getMore()' (onAdd)='onCarbAdd()' 
                     (onEdit)='onCarbUpdate($event)' (onDelete)='onCarbDelete($event)'>
                 </sacchon-fieldtable>
             </mat-tab>
             <mat-tab label="Blood glucose levels">
                 <sacchon-fieldtable [records]='glucoseRecord' [definitions]='glucoseFields'
-                    [hasReached]='fieldsSrv.glucoseReached' (onLoadMore)='fieldsSrv.getMoreGlucose()' (onDelete)='onGlucoseDelete($event)' (onAdd)='onGlucoseAdd()' (onEdit)='onGlucoseUpdate($event)'>
+                    [hasReached]='fieldsSrv.glucose.reached' (onLoadMore)='fieldsSrv.glucose.getMore()' (onDelete)='onGlucoseDelete($event)' (onAdd)='onGlucoseAdd()' (onEdit)='onGlucoseUpdate($event)'>
                 </sacchon-fieldtable>
             </mat-tab>
         </mat-tab-group>

@@ -1,1 +1,52 @@
-<p>reporter-medidata works!</p>
+<mat-card>
+    <mat-card-title> Personal Data Monitor </mat-card-title>
+    <mat-card-content>
+        <form [formGroup]='form'>
+            <mat-form-field>
+                <mat-label>Search for patient by name</mat-label>
+                <input type="text" [formControl]='form.controls.search' matInput placeholder="Patient email">
+                <mat-error *ngIf='form.controls.search.errors?.required && form.controls.search.touched'>Required
+                </mat-error>
+            </mat-form-field>
+            <div class="button">
+                <button mat-flat-button color="primary" (click)='onSearch()'>Search</button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>
+<mat-card *ngIf='curPatient'>
+    <mat-card-title> Medical Data </mat-card-title>
+    <mat-card-content>
+        <div class="patient-info">
+            <span> <span class="bold">Patient</span>: {{ curPatient?.fullName }} ( <a
+                    href="mailto:{{curPatient?.email}}">{{curPatient?.email}}</a> )</span>
+        </div>
+        <div class="date-range">
+            <mat-form-field appearance="standard" matTooltip="Leave empty for all time average"
+                [matTooltipShowDelay]="1000">
+                <mat-label>Date period</mat-label>
+                <mat-date-range-input #dateRange [rangePicker]="picker">
+                    <input matStartDate placeholder="Start date">
+                    <input matEndDate placeholder="End date" (dateInput)="onDateChange(dateRange.value)">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+                <button mat-icon-button matSuffix (click)='picker.select(null)'>
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        <mat-tab-group (selectedTabChange)='onTabChange($event)'>
+            <mat-tab class="tab" label="Carb intake">
+                <sacchon-fieldtable [records]='carbRecords' [definitions]='carbFields' [hasReached]='carb.reached'
+                    (onLoadMore)='carb.getMore()' [hasActions]='false' [hasAdd]='false'>
+                </sacchon-fieldtable>
+            </mat-tab>
+            <mat-tab label="Blood glucose levels">
+                <sacchon-fieldtable [records]='glucoseRecords' [definitions]='glucoseFields'
+                    [hasReached]='glucose.reached' (onLoadMore)='glucose.getMore()' [hasActions]='false' [hasAdd]='false'>
+                </sacchon-fieldtable>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-card-content>
+</mat-card>

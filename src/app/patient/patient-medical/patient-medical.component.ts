@@ -22,24 +22,24 @@ import { Subscription } from 'rxjs';
   templateUrl: './patient-medical.component.html',
   styleUrls: ['./patient-medical.component.scss']
 })
-export class PatientMedicalComponent implements OnInit,OnDestroy {
+export class PatientMedicalComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) carbPaginator;
 
 
-  carbFields:FieldTableDefinitions[]=[
+  carbFields: FieldTableDefinitions[] = [
     // { name: "id",value:v=>v.id,label:"Id"},
-    { name: "carb",value:v=>v.carb.toFixed(2),label:"Carb intake ( in grams )"},
-    { name: "date",value:v=>v.date,label:"Date"}
+    { name: "date", value: v => v.date, label: "Date" },
+    { name: "carb", value: v => v.carb.toFixed(2), label: "Carb intake ( in grams )" }
   ];
-  glucoseFields:FieldTableDefinitions[]=[
+  glucoseFields: FieldTableDefinitions[] = [
     // { name: "id",value:v => v.id,label:"Id"},
-    { name: "glucose",value:v => v.glucose.toFixed(2),label:"Glucose levels ( ing mg/dL )"},
-    { name: "date",value:v=> v.date,label:"Date"},
-    { name: "Time",value:v => v.time,label:"Time"}
+    { name: "date", value: v => v.date, label: "Date" },
+    { name: "Time", value: v => v.time, label: "Time" },
+    { name: "glucose", value: v => v.glucose.toFixed(2), label: "Glucose levels ( ing mg/dL )" }
   ];
 
-  carbRecord:MatTableDataSource<CarbRecord>;
-  glucoseRecord:MatTableDataSource<GlucoseRecord>
+  carbRecord: MatTableDataSource<CarbRecord>;
+  glucoseRecord: MatTableDataSource<GlucoseRecord>
 
   carbAvgLoading: boolean = true;
   carbAverage: number;
@@ -50,22 +50,22 @@ export class PatientMedicalComponent implements OnInit,OnDestroy {
   glucoseCount: number;
   countLoading: boolean = true;
 
-  carbSub:Subscription;
-  glucoseSub:Subscription;
+  carbSub: Subscription;
+  glucoseSub: Subscription;
   constructor(private patientSrv: PatientsService,
-              private dialog:MatDialog,
-              private router:Router,
-              public fieldsSrv: PatientFieldsService,
-              private snackBar:MatSnackBar) { 
-              }
+    private dialog: MatDialog,
+    private router: Router,
+    public fieldsSrv: PatientFieldsService,
+    private snackBar: MatSnackBar) {
+  }
   ngOnInit(): void {
     this.refreshOverview();
     this.carbRecord = new MatTableDataSource();
     this.glucoseRecord = new MatTableDataSource();
-    this.glucoseSub =this.fieldsSrv.glucose.obs.subscribe( d => this.glucoseRecord.data =d);
-    this.carbSub = this.fieldsSrv.carb.obs.subscribe( d => this.carbRecord.data= d);
+    this.glucoseSub = this.fieldsSrv.glucose.observable().subscribe(d => this.glucoseRecord.data = d);
+    this.carbSub = this.fieldsSrv.carb.observable().subscribe(d => this.carbRecord.data = d);
   }
-  ngOnDestroy():void{
+  ngOnDestroy(): void {
     this.glucoseSub.unsubscribe();
     this.carbSub.unsubscribe();
   }
@@ -88,7 +88,7 @@ export class PatientMedicalComponent implements OnInit,OnDestroy {
   glucoseChange(val: any) {
     this.glucoseAvgLoading = true;
     this.patientSrv.getPatientAvg("glucose", val.start, val.end)
-      .pipe(debounceTime(1000),delay(500)).subscribe(
+      .pipe(debounceTime(1000), delay(500)).subscribe(
         s => {
           this.glucoseAverage = s.value
           this.glucoseAvgLoading = false;
@@ -96,95 +96,88 @@ export class PatientMedicalComponent implements OnInit,OnDestroy {
   }
   carbChange(val: any) {
     this.patientSrv.getPatientAvg("carb", val.start, val.end)
-      .pipe(debounceTime(1000),delay(500)).subscribe(
-      s => {
-        this.carbAverage = s.value
-        this.carbAvgLoading = false;
-      }
-    );
+      .pipe(debounceTime(1000), delay(500)).subscribe(
+        s => {
+          this.carbAverage = s.value
+          this.carbAvgLoading = false;
+        }
+      );
   }
 
-  onTabChange( event:MatTabChangeEvent){
-    switch( event.tab.textLabel.toLowerCase() ){
-      case "overview" : 
+  onTabChange(event: MatTabChangeEvent) {
+    switch (event.tab.textLabel.toLowerCase()) {
+      case "overview":
         this.refreshOverview();
         break;
       case "carb intake":
-        this.refreshCarbs();
+        this.fieldsSrv.carb.refresh();
         break;
       case "blood glucose levels":
-        this.refreshGlucose();
+        this.fieldsSrv.glucose.refresh();
         break;
       default:
         console.log("this should not happen " + event.tab.textLabel);
     }
   }
-  refreshCarbs(){
-    console.log("refreshing carbs!");
-    this.fieldsSrv.refreshCarbs();
-  }
-  refreshGlucose(){
-    console.log("refreshing glucose!");
-    this.fieldsSrv.refreshGlucose();
-  }
-
-  onCarbAdd(){
+  onCarbAdd() {
     const dialogRef = this.dialog.open(PatientAddCarbComponent, {
     });
     dialogRef.afterClosed().subscribe(
       res => {
-        if( res)
-          this.refreshCarbs();
+        if (res)
+          this.fieldsSrv.carb.refresh();
       }
     );
   }
-  onCarbUpdate(record){
-    const dialogRef = this.dialog.open(PatientAddCarbComponent, { data: <DialogCarbData>{ id:record.id,carb:record.carb,date: record.date}
+  onCarbUpdate(record) {
+    const dialogRef = this.dialog.open(PatientAddCarbComponent, {
+      data: <DialogCarbData>{ id: record.id, carb: record.carb, date: record.date }
     });
     dialogRef.afterClosed().subscribe(
       res => {
-        if( res)
-          this.refreshCarbs();
+        if (res)
+          this.fieldsSrv.carb.refresh();
       }
     );
   }
-  onCarbDelete(record){
+  onCarbDelete(record) {
     this.patientSrv.deleteCarb(record.id).subscribe(
       () => {
-        this.snackBar.open("Succesfully deleted",null,{duration:2000})
-        this.refreshCarbs();
+        this.snackBar.open("Succesfully deleted", null, { duration: 2000 })
+        this.fieldsSrv.carb.refresh();
       },
-      (err) => this.snackBar.open(`Error deleting: ${err.description}`,null,{duration:2000})
+      (err) => this.snackBar.open(`Error deleting: ${err.description}`, null, { duration: 2000 })
     );
   }
 
-  onGlucoseAdd(){
+  onGlucoseAdd() {
     const dialogRef = this.dialog.open(PatientAddGlucoseComponent, {
     });
     dialogRef.afterClosed().subscribe(
       res => {
-        if( res)
-          this.refreshGlucose();
+        if (res)
+          this.fieldsSrv.glucose.refresh()
       }
     );
   }
-  onGlucoseUpdate(record){
-    const dialogRef = this.dialog.open(PatientAddGlucoseComponent, { data: <DialogGlucoseData>{ id:record.id,glucose:record.glucose,date: record.date, time:record.time}
+  onGlucoseUpdate(record) {
+    const dialogRef = this.dialog.open(PatientAddGlucoseComponent, {
+      data: <DialogGlucoseData>{ id: record.id, glucose: record.glucose, date: record.date, time: record.time }
     });
     dialogRef.afterClosed().subscribe(
       res => {
-        if( res)
-          this.refreshCarbs();
+        if (res)
+          this.fieldsSrv.glucose.refresh();
       }
     );
   }
-  onGlucoseDelete(record){
+  onGlucoseDelete(record) {
     this.patientSrv.deleteGlucose(record.id).subscribe(
       () => {
-        this.snackBar.open("Succesfully deleted",null,{duration:2000})
-        this.refreshGlucose();
+        this.snackBar.open("Succesfully deleted", null, { duration: 2000 })
+        this.fieldsSrv.glucose.refresh();
       },
-      (err) => this.snackBar.open(`Error deleting: ${err.description}`,null,{duration:2000})
+      (err) => this.snackBar.open(`Error deleting: ${err.description}`, null, { duration: 2000 })
     );
   }
 }

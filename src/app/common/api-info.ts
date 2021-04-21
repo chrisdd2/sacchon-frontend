@@ -26,6 +26,14 @@ export const ApiRoutes = {
         },
         consultation: prefix + "/api/doctor/consultation",
         pending: prefix + "/api/consultation/pending",
+    },
+    reporter:{
+        info: prefix + "/api/reporter/",
+        patient:  {
+            search : prefix + "/api/reporter/patient/search",
+            carb: prefix + "/api/reporter/patient/carb",
+            glucose: prefix + "/api/reporter/patient/glucose"
+        }
     }
 }
 

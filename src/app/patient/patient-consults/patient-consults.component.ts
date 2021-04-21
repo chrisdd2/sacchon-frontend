@@ -22,12 +22,12 @@ export class PatientConsultsComponent implements OnInit,OnDestroy {
   records: MatTableDataSource<Consultation>;
   obs:Subscription;
 
-  constructor(private fieldSrv:PatientFieldsService,private patient:PatientsService) { }
+  constructor(public fieldSrv:PatientFieldsService,private patient:PatientsService) { }
 
   ngOnInit(): void {
     this.records = new MatTableDataSource([]);
-    this.obs=this.fieldSrv.consultations.obs.subscribe ( c => this.records.data = c);
-    this.fieldSrv.refreshConsultations();
+    this.obs=this.fieldSrv.consultations.observable().subscribe ( c => this.records.data = c);
+    this.fieldSrv.consultations.refresh();
     console.log(this.patient.hasNotification());
     if( this.patient.hasNotification() ){
       this.patient.postNotified();
@@ -37,12 +37,4 @@ export class PatientConsultsComponent implements OnInit,OnDestroy {
   ngOnDestroy():void{
     this.obs.unsubscribe();
   }
-
-  onLoadMore(){
-    this.fieldSrv.getMoreConsultation();
-  }
-  hasReached(){
-    return this.fieldSrv.consultationsReached;
-  }
-
 }

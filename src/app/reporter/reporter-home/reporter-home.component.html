@@ -1,1 +1,35 @@
-<p>reporter-home works!</p>
+<mat-card>
+    <mat-card-title> Overview </mat-card-title>
+    <mat-card-content>
+        <div class="overview">
+            <div class="overview-item">
+                <p> <span class="leader">First name:</span><span>{{ reporter?.firstName }}</span></p>
+            </div>
+            <div class="overview-item">
+                <p> <span class="leader">Last name:</span><span>{{ reporter?.lastName }}</span></p>
+            </div>
+            <div class="overview-item">
+                <p> <span class="leader">Email:</span><a href="mailto:{{reporter?.email}}">&nbsp;{{ reporter?.email }}</a></p>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
+<mat-card>
+    <mat-card-title> Quick links </mat-card-title>
+    <mat-card-content>
+        <div class="overview">
+            <!-- <div class="overview-item">
+                <a routerLink="." (click) = "addCarb()">Submit carb intake record</a>
+            </div>
+            <div class="overview-item">
+                <a routerLink="." (click) ="addGlucose()">Submit glucode level measurement</a>
+            </div>
+            <div class="overview-item">
+                <a routerLink="/patient/consults">See latest consultation</a>
+            </div>
+            <div class="overview-item">
+                <a routerLink="/settings">View account settings</a>
+            </div> -->
+        </div>
+    </mat-card-content>
+</mat-card>
