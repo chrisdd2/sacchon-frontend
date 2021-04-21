@@ -6,7 +6,6 @@ import { PatientRootComponent } from './patient-root/patient-root.component';
 import { PatientHomeComponent } from './patient-home/patient-home.component';
 import { PatientMedicalComponent } from './patient-medical/patient-medical.component';
 import { PatientAddCarbComponent } from './patient-add-carb/patient-add-carb.component';
-import { PatientFieldtableComponent } from './patient-fieldtable/patient-fieldtable.component';
 import { PatientAddGlucoseComponent } from './patient-add-glucose/patient-add-glucose.component';
 import { PatientConsultsComponent } from './patient-consults/patient-consults.component';
 
@@ -31,7 +30,6 @@ export const routes: Routes = [
     PatientHomeComponent,
     PatientMedicalComponent,
     PatientAddCarbComponent,
-    PatientFieldtableComponent,
     PatientAddGlucoseComponent,
     PatientConsultsComponent
   ],

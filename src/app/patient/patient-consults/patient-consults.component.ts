@@ -1,7 +1,7 @@
 import { PatientsService } from 'src/app/services/patients.service';
 import { PatientFieldsService } from './../../services/patient-fields.service';
 import { MatTableDataSource } from '@angular/material/table';
-import { FieldTableDefinitions } from './../patient-fieldtable/patient-fieldtable.component';
+import { FieldTableDefinitions } from '../../shared/fieldtable/fieldtable.component';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Consultation } from 'src/app/models/consultation.model';
 import { Subscription } from 'rxjs';

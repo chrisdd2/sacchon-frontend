@@ -1,1 +1,18 @@
-<p>reporter-root works!</p>
+<mat-toolbar color="primary" *ngIf='showToolBar'>
+    <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>Menu</span>
+</mat-toolbar>
+<mat-sidenav-container>
+    <mat-sidenav #sidenav>
+        <div>
+        <a mat-stroked-button routerLink="./home" (click) ="closeNav()" >Home</a>
+        <a mat-stroked-button routerLink="./medidata" (click) ="closeNav()">MediDataRepo</a>
+        <a mat-stroked-button routerLink="./doctoradvice" (click) ="closeNav()">DoctorAdvice <span *ngIf='hasNotification' matBadge="!" matBadgePosition="after" matBadgeColor="accent" matBadgeOverlap="false"></span></a>
+        </div>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

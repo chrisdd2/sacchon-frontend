@@ -53,15 +53,15 @@
                 </div>
             </mat-tab>
             <mat-tab class="tab" label="Carb intake">
-                <sacchon-patient-fieldtable [records]='carbRecord' [definitions]='carbFields'
+                <sacchon-fieldtable [records]='carbRecord' [definitions]='carbFields'
                     [hasReached]='fieldsSrv.carbReached' (onLoadMore)='fieldsSrv.getMoreCarbs()' (onAdd)='onCarbAdd()' 
                     (onEdit)='onCarbUpdate($event)' (onDelete)='onCarbDelete($event)'>
-                </sacchon-patient-fieldtable>
+                </sacchon-fieldtable>
             </mat-tab>
             <mat-tab label="Blood glucose levels">
-                <sacchon-patient-fieldtable [records]='glucoseRecord' [definitions]='glucoseFields'
+                <sacchon-fieldtable [records]='glucoseRecord' [definitions]='glucoseFields'
                     [hasReached]='fieldsSrv.glucoseReached' (onLoadMore)='fieldsSrv.getMoreGlucose()' (onDelete)='onGlucoseDelete($event)' (onAdd)='onGlucoseAdd()' (onEdit)='onGlucoseUpdate($event)'>
-                </sacchon-patient-fieldtable>
+                </sacchon-fieldtable>
             </mat-tab>
         </mat-tab-group>
     </mat-card-content>

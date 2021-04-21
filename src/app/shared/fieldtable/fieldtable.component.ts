@@ -10,11 +10,11 @@ export interface FieldTableDefinitions{
 }
 
 @Component({
-  selector: 'sacchon-patient-fieldtable',
-  templateUrl: './patient-fieldtable.component.html',
-  styleUrls: ['./patient-fieldtable.component.scss']
+  selector: 'sacchon-fieldtable',
+  templateUrl: './fieldtable.component.html',
+  styleUrls: ['./fieldtable.component.scss']
 })
-export class PatientFieldtableComponent implements OnInit,AfterViewInit {
+export class FieldTableComponent implements OnInit,AfterViewInit {
 
   @ViewChild(MatPaginator) paginator:MatPaginator;
 

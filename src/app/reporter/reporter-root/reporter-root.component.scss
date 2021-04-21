@@ -1,0 +1,20 @@
+mat-sidenav {
+    display:flex;
+    flex-direction:column;
+    max-width:200px;
+}
+mat-sidenav a {
+    margin-right:10px;
+    width:100%;
+    border-right:none;
+    padding:12px;
+    text-align: center;
+    border-radius:0px;
+    text-decoration: none;
+}
+
+
+
+mat-sidenav-container{
+    height:100vh;
+}

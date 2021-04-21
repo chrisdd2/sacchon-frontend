@@ -1,5 +1,5 @@
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { FieldTableDefinitions } from './../patient-fieldtable/patient-fieldtable.component';
+import { FieldTableDefinitions } from '../../shared/fieldtable/fieldtable.component';
 import { CarbRecord, GlucoseRecord } from './../../models/patient.fields.model';
 import { PatientFieldsService } from './../../services/patient-fields.service';
 import { Router } from '@angular/router';

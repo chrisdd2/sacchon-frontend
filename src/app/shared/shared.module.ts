@@ -4,8 +4,6 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from '../header/header.component';
-import { HomeComponent } from '../home/home.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -23,9 +21,12 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { FieldTableComponent } from './fieldtable/fieldtable.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    FieldTableComponent
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -71,6 +72,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatSnackBarModule,
     MatTableModule,
     MatPaginatorModule,
+    FieldTableComponent
   ]
 })
 export class SharedModule { }
