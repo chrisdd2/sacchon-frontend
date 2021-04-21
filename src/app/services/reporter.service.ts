@@ -9,7 +9,11 @@ export interface ReporterPatient{
   fullName:string;
   email:string;
 }
-
+export interface ReporterDoctor{
+  id:number;
+  fullName:string;
+  email:string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +35,9 @@ export class ReporterService {
     return this.http.get<ReporterPatient>(ApiRoutes.reporter.patient.search, { params: new HttpParams().append("email",email)});
   }
 
+  searchDoctor(email:string){
+    return this.http.get<ReporterDoctor>(ApiRoutes.reporter.doctor.search, { params: new HttpParams().append("email",email)});
+  }
 
 
 }

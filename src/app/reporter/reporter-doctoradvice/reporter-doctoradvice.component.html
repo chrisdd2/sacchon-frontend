@@ -1,1 +1,43 @@
-<p>reporter-doctoradvice works!</p>
+<mat-card>
+    <mat-card-title> Doctor Advice (Consultations)</mat-card-title>
+    <mat-card-content>
+        <form [formGroup]='form'>
+            <mat-form-field>
+                <mat-label>Search for doctor by email</mat-label>
+                <input type="text" [formControl]='form.controls.search' matInput placeholder="Doctor email">
+                <mat-error *ngIf='form.controls.search.errors?.required && form.controls.search.touched'>Required
+                </mat-error>
+            </mat-form-field>
+            <div class="button">
+                <button mat-flat-button color="primary" (click)='onSearch()'>Search</button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>
+<mat-card *ngIf='curDoctor'>
+    <mat-card-title> Consultations </mat-card-title>
+    <mat-card-content>
+        <div class="patient-info">
+            <span> <span class="bold">Doctor</span>: {{ curDoctor?.fullName }} ( <a
+                    href="mailto:{{curDoctor?.email}}">{{curDoctor?.email}}</a> )</span>
+        </div>
+        <div class="date-range">
+            <mat-form-field appearance="standard" matTooltip="Leave empty for all time average"
+                [matTooltipShowDelay]="1000">
+                <mat-label>Date range</mat-label>
+                <mat-date-range-input #dateRange [rangePicker]="picker">
+                    <input matStartDate placeholder="Start date">
+                    <input matEndDate placeholder="End date" (dateInput)="onDateChange(dateRange.value)">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+                <button mat-icon-button matSuffix (click)='picker.select(null)'>
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        <sacchon-fieldtable [records]='records' [definitions]='fields' [hasReached]='supplier.reached'
+            (onLoadMore)='supplier.getMore()' [hasActions]='false' [hasAdd]='false'>
+        </sacchon-fieldtable>
+    </mat-card-content>
+</mat-card>

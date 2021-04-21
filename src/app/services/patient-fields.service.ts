@@ -3,7 +3,7 @@ import { CarbRecord, GlucoseRecord } from './../models/patient.fields.model';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { ApiRoutes } from '../common/api-info';
-import { FieldSupplier } from '../shared/util';
+import { FieldSupplier } from './field-supplier';
 
 
 

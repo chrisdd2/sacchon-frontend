@@ -34,7 +34,7 @@ export class PatientAddCarbComponent implements OnInit {
     });
     if( this.data ){
       this.id=this.data.id;
-      this.form.controls.carb.setValue(this.data.carb.toPrecision(2));
+      this.form.controls.carb.setValue(this.data.carb.toFixed(2));
       this.form.controls.date.setValue(this.data.date);
     }
   }
@@ -42,7 +42,7 @@ export class PatientAddCarbComponent implements OnInit {
 
   put(){
     console.log("date  "+ this.form.controls.date.value)
-    const frm:CarbForm = { id:this.id,carbIntake: this.form.controls.carb.value, date: this.form.controls.date.value }
+    const frm:CarbForm = { id:this.id,carbIntake: this.form.controls.carb.value, date: new Date(this.form.controls.date.value) }
     this.patientSrv.putCarb(frm).subscribe(
       () => {
         this.snackBar.open("Succesfully update","Close",{duration:2000})

@@ -1,24 +1,23 @@
+import { DoctorService } from './../../services/doctor.service';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
-import { BreakStatement } from 'typescript';
-
+import { Doctor } from 'src/app/models/doctor.model';
 
 @Component({
-  selector: 'sacchon-reporter-root',
-  templateUrl: './reporter-root.component.html',
-  styleUrls: ['./reporter-root.component.scss']
+  selector: 'sacchon-doctor-root',
+  templateUrl: './doctor-root.component.html',
+  styleUrls: ['./doctor-root.component.scss']
 })
-export class ReporterRootComponent implements OnInit, AfterViewInit {
-
+export class DoctorRootComponent implements OnInit {
   @ViewChild(MatSidenav) sidenav: MatSidenav;
 
-
   showToolBar: boolean;
+  doctor:Doctor;
 
 
   constructor(private breakpoint: BreakpointObserver,
-  ) {
+    private doctorSrv:DoctorService) {
   }
 
 
@@ -43,8 +42,11 @@ export class ReporterRootComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.doctorSrv.doctor.subscribe( d => {
+      this.doctor=d;
+    });
+    this.doctorSrv.refreshInfo();
   }
 
 
 }
-

@@ -1,7 +1,7 @@
 import { ApiRoutes } from './../../common/api-info';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { GlucoseRecord } from './../../models/patient.fields.model';
-import { FieldSupplier, getDateString } from './../../shared/util';
+import { getDateString,resetFieldWithDates } from './../../shared/util';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ReporterService, ReporterPatient } from './../../services/reporter.service';
@@ -12,6 +12,7 @@ import { CarbRecord } from 'src/app/models/patient.fields.model';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatTabChangeEvent } from '@angular/material/tabs/tab-group';
 import { FieldTableDefinitions } from 'src/app/shared/fieldtable/fieldtable.component';
+import { FieldSupplier } from 'src/app/services/field-supplier';
 
 @Component({
   selector: 'sacchon-reporter-medidata',
@@ -44,7 +45,7 @@ export class ReporterMedidataComponent implements OnInit, OnDestroy {
   carbSub:Subscription;
   glucoseSub:Subscription;
 
-  constructor(private repoterSrv: ReporterService,
+  constructor(private reporterSrv: ReporterService,
     private snackBar: MatSnackBar,
     private http: HttpClient) { }
 
@@ -68,7 +69,7 @@ export class ReporterMedidataComponent implements OnInit, OnDestroy {
     if (this.form.invalid)
       return;
     this.clearPatient();
-    this.repoterSrv.searchPatient(this.form.controls.search.value).subscribe(
+    this.reporterSrv.searchPatient(this.form.controls.search.value).subscribe(
       (p: ReporterPatient) => this.setupPatient(p),
       (er: ApiError) => this.snackBar.open(er.description, "Close", { duration: 2000, verticalPosition: "top" })
     )
@@ -76,8 +77,8 @@ export class ReporterMedidataComponent implements OnInit, OnDestroy {
 
   setupPatient(p:ReporterPatient) {
     this.curPatient=p;
-    this.resetField(this.carb,{});
-    this.resetField(this.glucose,{});
+    resetFieldWithDates(this.carb,{"id":this.curPatient.id.toString()},{});
+    resetFieldWithDates(this.glucose,{"id":this.curPatient.id.toString()},{});
     this.carb.refresh();
     this.glucose.refresh();
   }
@@ -96,22 +97,13 @@ export class ReporterMedidataComponent implements OnInit, OnDestroy {
         console.log("this should not happen " + event.tab.textLabel);
     }
   }
-
-  resetField<T>(field:FieldSupplier<T>,{start=null,end=null}){
-    let params = new HttpParams();
-    params = params.set("id",this.curPatient.id.toString());
-    if( start)
-      params = params.set("start",getDateString(start))
-    if( end)
-      params = params.set("end",getDateString(end));
-    field.reset(params);
-  }
   onDateChange(v:{start:Date,end:Date}){
     console.log(v.start,v.end);
 
-    this.resetField(this.carb,v);
-    this.resetField(this.glucose,v);
+    resetFieldWithDates(this.carb,{"id":this.curPatient.id.toString()},v);
+    resetFieldWithDates(this.glucose,{"id":this.curPatient.id.toString()},v);
     this.glucose.refresh();
     this.carb.refresh();
   }
 }
+

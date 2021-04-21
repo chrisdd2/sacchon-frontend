@@ -1,3 +1,5 @@
+import { PatientsService } from './services/patients.service';
+import { ReporterService } from './services/reporter.service';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { PatientFieldsService } from './services/patient-fields.service';
@@ -19,6 +21,7 @@ import { SharedModule } from './shared/shared.module';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatColumnDef } from '@angular/material/table';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +43,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatDialog,
     MatSnackBar,
     PatientFieldsService,
+    ReporterService,
+    PatientsService,
+    MatColumnDef,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],

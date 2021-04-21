@@ -45,7 +45,7 @@ export class PatientAddGlucoseComponent implements OnInit {
   
 
   put(){
-    const frm:GlucoseForm = { id:this.id,glucoseLevel: this.form.controls.glucose.value, date: this.form.controls.date.value, time: this.form.controls.time.value +":00" }
+    const frm:GlucoseForm = { id:this.id,glucoseLevel: this.form.controls.glucose.value, date: new Date(this.form.controls.date.value), time: this.form.controls.time.value +":00" }
     this.patientSrv.putGlucose(frm).subscribe(
       () => {
         this.snackBar.open("Succesfully update","Close",{duration:2000})

@@ -1,0 +1,35 @@
+<mat-card>
+    <mat-card-title> Overview </mat-card-title>
+    <mat-card-content>
+        <div class="overview">
+            <div class="overview-item">
+                <p> <span class="leader">First name:</span><span>{{ doctor?.firstName }}</span></p>
+            </div>
+            <div class="overview-item">
+                <p> <span class="leader">Last name:</span><span>{{ doctor?.lastName }}</span></p>
+            </div>
+            <div class="overview-item">
+                <p> <span class="leader">Email:</span><a href="mailto:{{doctor?.email}}">&nbsp;{{ doctor?.email }}</a></p>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
+<mat-card>
+    <mat-card-title> Quick links </mat-card-title>
+    <mat-card-content>
+        <div class="overview">
+            <!-- <div class="overview-item">
+                <a routerLink="." (click) = "addCarb()">Submit carb intake record</a>
+            </div>
+            <div class="overview-item">
+                <a routerLink="." (click) ="addGlucose()">Submit glucode level measurement</a>
+            </div>
+            <div class="overview-item">
+                <a routerLink="/patient/consults">See latest consultation</a>
+            </div>
+            <div class="overview-item">
+                <a routerLink="/settings">View account settings</a>
+            </div> -->
+        </div>
+    </mat-card-content>
+</mat-card>

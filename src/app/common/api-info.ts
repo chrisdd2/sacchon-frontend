@@ -33,7 +33,12 @@ export const ApiRoutes = {
             search : prefix + "/api/reporter/patient/search",
             carb: prefix + "/api/reporter/patient/carb",
             glucose: prefix + "/api/reporter/patient/glucose"
-        }
+        },
+        doctor: {
+            search: prefix + "/api/reporter/doctor/search",
+            consults: prefix + "/api/reporter/doctor/consults"
+        },
+        pending: prefix + "/api/reporter/pending"
     }
 }
 
