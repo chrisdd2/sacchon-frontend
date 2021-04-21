@@ -15,7 +15,7 @@ export const routes: Routes = [
     component: ReporterRootComponent,
     children:[
       {path:'', redirectTo:'home', pathMatch:'prefix'},
-      {path: 'home', component:ReporterRootComponent}
+      {path: 'home', component:ReporterRootComponent},
       {path: 'MediDataRepo', component:ReporterRootComponent},
       {path: 'DoctorAdvice', component:ReporterRootComponent},
     ]

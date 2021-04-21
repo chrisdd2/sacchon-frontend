@@ -14,6 +14,7 @@ export class PatientRootComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSidenav) sidenav: MatSidenav;
 
   showToolBar: boolean;
+  hasNotification: boolean;
   patient:Patient;
 
 
@@ -43,8 +44,12 @@ export class PatientRootComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.patientSrv.patient.subscribe( p => this.patient=p);
+    this.patientSrv.patient.subscribe( p => {
+      this.patient=p;
+      this.hasNotification=this.patientSrv.hasNotification();
+    });
     this.patientSrv.getPatientInfo();
   }
+
 
 }

@@ -46,17 +46,16 @@ export class PatientsService {
       console.log("wrong call to avg");
     let params = new HttpParams();
     if (start)
-      params = params.append("start", start.toISOString().substr(0, 10));
+      params = params.append("start", getDateString(start));
     if (end)
-      params = params.append("end", end.toISOString().substr(0, 10));
+      params = params.append("end", getDateString(end));
     return this.http.get<AvgItem>(route, { params });
   }
   getCarbGlucoseCount() {
     return this.http.get<RecordCounts>(ApiRoutes.patient.count);
   }
   putGlucose(frm: GlucoseForm ){
-    console.log(frm.date);
-    return this.http.put(ApiRoutes.patient.glucose,{ id:frm.id ,glucoseLevel: frm.glucoseLevel, date : frm.date,time: frm.time});
+    return this.http.put(ApiRoutes.patient.glucose,{ id:frm.id ,glucoseLevel: frm.glucoseLevel, date : getDateString(frm.date),time: frm.time});
   }
 
   deleteGlucose(id:number){
@@ -68,8 +67,7 @@ export class PatientsService {
   }
   
   putCarb(frm: CarbForm) {
-    console.log(frm.date);
-    return this.http.put(ApiRoutes.patient.carb, { id:frm.id,carbIntake: frm.carbIntake, date: frm.date });
+    return this.http.put(ApiRoutes.patient.carb, { id:frm.id,carbIntake: frm.carbIntake, date: getDateString(frm.date) });
   }
 
   postCarb(frm: CarbForm) {
