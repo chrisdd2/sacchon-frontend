@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ReporterHomeComponent } from './reporter-home/reporter-home.component';
 import { ReporterMedidataComponent } from './reporter-medidata/reporter-medidata.component';
 import { ReporterDoctoradviceComponent } from './reporter-doctoradvice/reporter-doctoradvice.component';
+import { ReporterActivityComponent } from './reporter-activity/reporter-activity.component';
 
 
 
@@ -18,6 +19,7 @@ export const routes: Routes = [
       {path: 'home', component:ReporterHomeComponent},
       {path: 'medidata', component:ReporterMedidataComponent},
       {path: 'doctoradvice', component:ReporterDoctoradviceComponent},
+      {path: 'activity', component:ReporterActivityComponent},
     ]
   }
 ];
@@ -28,7 +30,8 @@ export const routes: Routes = [
     ReporterRootComponent,
     ReporterHomeComponent,
     ReporterMedidataComponent,
-    ReporterDoctoradviceComponent
+    ReporterDoctoradviceComponent,
+    ReporterActivityComponent
   ],
   imports: [
     CommonModule,

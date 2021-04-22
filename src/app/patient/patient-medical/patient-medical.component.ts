@@ -143,10 +143,10 @@ export class PatientMedicalComponent implements OnInit, OnDestroy {
   onCarbDelete(record) {
     this.patientSrv.deleteCarb(record.id).subscribe(
       () => {
-        this.snackBar.open("Succesfully deleted", null, { duration: 2000 })
         this.fieldsSrv.carb.refresh();
+        this.snackBar.open("Succesfully deleted", "Close", { duration: 2000 })
       },
-      (err) => this.snackBar.open(`Error deleting: ${err.description}`, null, { duration: 2000 })
+      (err) => this.snackBar.open(`Error deleting: ${err.description}`, "null", { duration: 2000 })
     );
   }
 
@@ -174,10 +174,10 @@ export class PatientMedicalComponent implements OnInit, OnDestroy {
   onGlucoseDelete(record) {
     this.patientSrv.deleteGlucose(record.id).subscribe(
       () => {
-        this.snackBar.open("Succesfully deleted", null, { duration: 2000 })
         this.fieldsSrv.glucose.refresh();
+        this.snackBar.open("Succesfully deleted", "Close", { duration: 2000 })
       },
-      (err) => this.snackBar.open(`Error deleting: ${err.description}`, null, { duration: 2000 })
+      (err) => this.snackBar.open(`Error deleting: ${err.description}`, "Close", { duration: 2000 })
     );
   }
 }

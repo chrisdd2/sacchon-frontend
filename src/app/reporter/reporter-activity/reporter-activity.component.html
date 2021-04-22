@@ -1,0 +1,53 @@
+<mat-card>
+    <mat-card-title>Doctor Advice</mat-card-title>
+    <mat-card-content>
+        <mat-tab-group (selectedTabChange)="onTabChange($event)">
+            <mat-tab label="Inactive Doctors" >
+                    <div class="date-range m-top">
+                        <mat-form-field appearance="standard" matTooltip="Leave empty for all time average"
+                            [matTooltipShowDelay]="1000">
+                            <mat-label>Date range</mat-label>
+                            <mat-date-range-input #dateRange [rangePicker]="picker">
+                                <input matStartDate placeholder="Start date">
+                                <input matEndDate placeholder="End date" (dateInput)="onDateChange(doctorSupplier,dateRange.value)">
+                            </mat-date-range-input>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-date-range-picker #picker></mat-date-range-picker>
+                            <button mat-icon-button matSuffix (click)='picker.select(null)'>
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                    <sacchon-fieldtable [records]='doctorRecords' [definitions]='fields' [hasReached]='doctorSupplier.reached'
+                        (onLoadMore)='doctorSupplier.getMore()' [hasActions]='false' [hasAdd]='false'>
+                    </sacchon-fieldtable>
+
+                    </div>
+            </mat-tab>
+            <mat-tab label="Inactive Patients">
+                    <div class="date-range m-top">
+                        <mat-form-field appearance="standard" matTooltip="Leave empty for all time average"
+                            [matTooltipShowDelay]="1000">
+                            <mat-label>Date range</mat-label>
+                            <mat-date-range-input #dateRangePatient [rangePicker]="pickerPatient">
+                                <input matStartDate placeholder="Start date">
+                                <input matEndDate placeholder="End date" (dateInput)="onDateChange(patientSupplier,dateRangePatient.value)">
+                            </mat-date-range-input>
+                            <mat-datepicker-toggle matSuffix [for]="pickerPatient"></mat-datepicker-toggle>
+                            <mat-date-range-picker #pickerPatient></mat-date-range-picker>
+                            <button mat-icon-button matSuffix (click)='pickerPatient.select(null)'>
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                    <sacchon-fieldtable [records]='patientRecords' [definitions]='fields' [hasReached]='patientSupplier.reached'
+                        (onLoadMore)='patientSupplier.getMore()' [hasActions]='false' [hasAdd]='false'>
+                    </sacchon-fieldtable>
+
+                    </div>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-card-content>
+</mat-card>

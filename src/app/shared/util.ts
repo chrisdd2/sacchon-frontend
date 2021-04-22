@@ -23,3 +23,6 @@ export function resetFieldWithDates<T>(field:FieldSupplier<T>,extra: { [key:stri
       params = params.set("end",getDateString(end));
     field.reset(params);
   }
+export function patientName(c:{patientName:string,patientEmail:string}):string{
+  return `${c.patientName} ( ${c.patientEmail} )`;
+}

@@ -1,4 +1,4 @@
-< class="base-container">
+<div class="base-container">
     <form *ngIf="account_type=='';else create">
         <mat-card>
             <mat-card-title> Select account type </mat-card-title>
@@ -14,7 +14,7 @@
         <form [formGroup]='form' (ngSubmit)='onSubmit()' novalidate>
             <mat-card>
                 <mat-card-title>Account creation</mat-card-title>
-            <mat-content>
+                <mat-content>
                     <mat-form-field>
                         <input type="text" formControlName="firstName" matInput placeholder="First name">
                         <mat-error *ngIf='form.controls.firstName.errors?.required'>Required</mat-error>
@@ -31,22 +31,27 @@
                     <mat-form-field>
                         <input type="password" formControlName="password" matInput placeholder="Password">
                         <mat-error *ngIf='form.controls.password.errors?.required'>Required</mat-error>
-                        <mat-error *ngIf='form.controls.password.errors?.pattern'>Must contain characters and numbers and be at least 8 characters long</mat-error>
+                        <mat-error *ngIf='form.controls.password.errors?.pattern'>Must contain characters and numbers
+                            and be at least 8 characters long</mat-error>
                     </mat-form-field>
                     <mat-form-field>
-                        <input type="password" formControlName="passwordConfirm" matInput placeholder="Confirm password">
+                        <input type="password" formControlName="passwordConfirm" matInput
+                            placeholder="Confirm password">
                         <mat-error *ngIf='form.controls.passwordConfirm.errors?.required'>Required</mat-error>
                     </mat-form-field>
                     <div class="buttons">
-                        <mat-error *ngIf='form.errors?.passwordMatch && form.controls.passwordConfirm.touched && form.controls.password.touched' >Passwords must match</mat-error>
-                        <button type="submit" mat-flat-button color="primary" >Create account!</button>
-                        <button type="button" mat-flat-button (click) ='formClear()'>Clear form</button>
+                        <mat-error
+                            *ngIf='form.errors?.passwordMatch && form.controls.passwordConfirm.touched && form.controls.password.touched'>
+                            Passwords must match</mat-error>
+                        <button type="submit" mat-flat-button color="primary">Create account!</button>
+                        <button type="button" mat-flat-button (click)='formClear()'>Clear form</button>
                     </div>
                     <div *ngIf='error' class="error"> {{ error.description }} </div>
-            </mat-content>
+                </mat-content>
             </mat-card>
         </form>
     </ng-template>
     <ng-template #spin>
         <div class='spinner-border text-primary d-block mx-auto my-3' role='status'></div>
     </ng-template>
+</div>

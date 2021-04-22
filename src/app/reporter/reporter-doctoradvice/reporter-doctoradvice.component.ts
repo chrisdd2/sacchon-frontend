@@ -11,7 +11,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Consultation } from 'src/app/models/consultation.model';
 import { FieldTableDefinitions } from 'src/app/shared/fieldtable/fieldtable.component';
 import { ApiError } from 'src/app/models/api-error.model';
-import { getDateString, resetFieldWithDates } from 'src/app/shared/util';
+import { getDateString, patientName, resetFieldWithDates } from 'src/app/shared/util';
 
 export interface ConsultationReporter extends Consultation{
   patientEmail:string;
@@ -19,16 +19,16 @@ export interface ConsultationReporter extends Consultation{
 export interface PendingPatient {
   patientName:string;
   patientEmail:string;
-  dateConsult:Date;
+  expirationDate:Date;
 }
 
-function patientName(c:ConsultationReporter):string{
-  return `${c.patientName} ( ${c.patientEmail} )`;
-}
+
 
 function consultDate(c:PendingPatient):string{
+  if( !c.expirationDate)
+    return "Not consulted yet";
   // date math hope its corrent
-  const diff = Date.now() - c.dateConsult.getTime();
+  const diff = Date.now() - c.expirationDate.getTime();
   if( diff < 0 )
     return "Patient is not pending ( logic error in backend )";
   return ((diff/24/3600/1000) | 0).toString();
@@ -76,7 +76,7 @@ export class ReporterDoctoradviceComponent implements OnInit,OnDestroy {
     this.doctorSupplier = new FieldSupplier(this.http,ApiRoutes.reporter.doctor.consults,new HttpParams());
     this.doctorRecords = new MatTableDataSource([]);
     this.doctorSub = this.doctorSupplier.observable().subscribe( c => this.doctorRecords.data = c);
-    this.patientSupplier = new FieldSupplier(this.http,ApiRoutes.reporter.pending,new HttpParams());
+    this.patientSupplier = new FieldSupplier(this.http,ApiRoutes.reporter.patient.pending,new HttpParams());
     this.patientRecords = new MatTableDataSource([]);
     this.patientSub = this.patientSupplier.observable().subscribe( c => this.patientRecords.data = c);
   }

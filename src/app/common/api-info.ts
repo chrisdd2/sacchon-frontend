@@ -1,7 +1,7 @@
 import { createAbstractBuilder } from 'typescript';
 import { environment } from './../../environments/environment.prod';
 
-const prefix = "http://192.168.1.105:9000"
+const prefix = "http://ec2-3-121-200-169.eu-central-1.compute.amazonaws.com:9000"
 export const ApiRoutes = {
     login: prefix + "/api/auth/login",
     signup: prefix + "/api/auth/signup",
@@ -33,13 +33,16 @@ export const ApiRoutes = {
         patient:  {
             search : prefix + "/api/reporter/patient/search",
             carb: prefix + "/api/reporter/patient/carb",
-            glucose: prefix + "/api/reporter/patient/glucose"
+            glucose: prefix + "/api/reporter/patient/glucose",
+            activity: prefix +"/api/reporter/patient/activity",
+            pending: prefix + "/api/reporter/patient/pending"
         },
         doctor: {
             search: prefix + "/api/reporter/doctor/search",
-            consults: prefix + "/api/reporter/doctor/consults"
+            consults: prefix + "/api/reporter/doctor/consults",
+            activity: prefix +"/api/reporter/doctor/activity"
         },
-        pending: prefix + "/api/reporter/pending"
+
     }
 }
 
