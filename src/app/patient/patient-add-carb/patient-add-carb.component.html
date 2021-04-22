@@ -1,7 +1,7 @@
 <form [formGroup] ='form' novalidate>
     <mat-form-field>
         <mat-label>Carb intake ( in grams )</mat-label>
-        <input matInput [formControl] = 'form.controls.carb' min="0" step="1" type="number" placerholder="Carb intake">
+        <input matInput [formControl] = 'form.controls.carb' min="0" step="0.01" type="number" placerholder="Carb intake">
         <mat-error *ngIf='form.controls.carb.errors?.required && form.controls.carb.touched'>Required</mat-error>
         <mat-error *ngIf='form.controls.carb.errors?.min && form.controls.carb.touched'>Must be not negative</mat-error>
     </mat-form-field>

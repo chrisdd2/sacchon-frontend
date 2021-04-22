@@ -5,7 +5,7 @@ import { BehaviorSubject, Observable } from "rxjs";
 export class FieldSupplier<T>{
 
   reached: boolean;
-  limit: number = 50;
+  limit: number = 40;
   data: T[];
   private obs: BehaviorSubject<T[]>;
 
@@ -29,7 +29,7 @@ export class FieldSupplier<T>{
         if (res.length == 0)
           this.reached = true;
         else {
-          if (res.length < 50)
+          if (res.length <= this.limit)
             this.reached = true;
           this.data = res;
         }
@@ -47,7 +47,7 @@ export class FieldSupplier<T>{
         if (res.length == 0)
           this.reached = true;
         else {
-          if (res.length < 50)
+          if (res.length <= this.limit)
             this.reached = true;
           this.data.push(...res);
         }

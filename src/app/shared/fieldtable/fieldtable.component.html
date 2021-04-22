@@ -14,14 +14,14 @@
             <ng-container *ngIf="hasActions" matColumnDef="actions">
                 <th><mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
                 <mat-cell class="duration-cell" *matCellDef="let record">
-                    <button *ngIf='hasView' mat-flat-button>
-                        <mat-icon (click)='onView.emit(record)'>pageview</mat-icon>
+                    <button *ngIf='hasView' (click)='onView.emit(record)' mat-flat-button>
+                        <mat-icon >pageview</mat-icon>
                     </button>
-                    <button *ngIf='hasEdit' mat-flat-button>
-                        <mat-icon (click)='onEdit.emit(record)'>edit</mat-icon>
+                    <button *ngIf='hasEdit'  (click)='onEdit.emit(record)' mat-flat-button>
+                        <mat-icon>edit</mat-icon>
                     </button>
-                    <button *ngIf='hasDelete' mat-flat-button>
-                        <mat-icon (click)='onDelete.emit(record)'>delete</mat-icon>
+                    <button *ngIf='hasDelete' (click)='onDelete.emit(record)' mat-flat-button>
+                        <mat-icon >delete</mat-icon>
                     </button>
                 </mat-cell>
             </ng-container>
@@ -30,6 +30,6 @@
         </mat-table>
     </div>
     <div id="paginator">
-        <mat-paginator #carbPaginator [pageSizeOptions]="[10,25,50]" showFirstLastButtons></mat-paginator>
+        <mat-paginator #carbPaginator [pageSizeOptions]="[10,25,50,75,100]" showFirstLastButtons></mat-paginator>
     </div>
 </div>
